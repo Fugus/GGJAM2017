@@ -75,6 +75,8 @@ ModelImporter:
     400064: mixamorig:Spine
     400066: mixamorig:Spine1
     400068: mixamorig:Spine2
+    2300000: Mesh
+    3300000: Mesh
     4300000: Mesh
     7400000: mixamo.com
     9500000: //RootNode
