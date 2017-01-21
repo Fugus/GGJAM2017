@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class killFloor : MonoBehaviour {
 
-	public GameObject player;
-
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+	public Vector3 SpawnPoint;
 	
-	// Update is called once per frame
-	void Update () {
+	void OnTriggerEnter (Collider col) {
 		
+		if (col.tag == "Player") {
+			
+			col.transform.position = SpawnPoint;
+		}
 	}
+
 }
