@@ -4,6 +4,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(DeformSpawner))]
+[RequireComponent(typeof(ForceFieldSpawner))]
 [RequireComponent(typeof(KeepAboveGround))]
 public class ThirdPersonCharacter : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     Vector3 m_GroundNormal;
     SphereCollider m_SphereCollider;
     DeformSpawner m_DeformSpawner;
+    ForceFieldSpawner m_ForceFieldSpawner;
     KeepAboveGround m_KeepAboveGround;
     bool m_IsStomping = false;
 
@@ -82,6 +84,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         m_SphereCollider = GetComponent<SphereCollider>();
         m_DeformSpawner = GetComponent<DeformSpawner>();
         m_KeepAboveGround = GetComponent<KeepAboveGround>();
+        m_ForceFieldSpawner = GetComponent<ForceFieldSpawner>();
 
         m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         m_OrigGroundCheckDistance = m_GroundCheckDistance;
@@ -137,6 +140,11 @@ public class ThirdPersonCharacter : MonoBehaviour
                 m_Rigidbody.AddForce(m_GroundNormal * m_JumpPower, ForceMode.Impulse);
                 m_IsGrounded = false;
                 m_GroundCheckDistance = 0.1f;
+            }
+
+            if (force == ButtonStateEvent.Press)
+            {
+                m_ForceFieldSpawner.SpawnForceField(transform.position);
             }
 
             moveSpeedMultiplier = m_MoveSpeedMultiplierGrounded;
