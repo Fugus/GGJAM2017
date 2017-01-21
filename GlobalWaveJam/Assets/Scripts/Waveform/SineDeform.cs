@@ -40,17 +40,20 @@ public class SineDeform : MonoBehaviour {
 		waveTimer += Time.deltaTime*propagationSpeedPerSec;
 		//Debug.Log (Time.time);
 
-		if(sphereCollider.radius < maxPropagation) 
+		/*if(sphereCollider.radius < maxPropagation) */
 			sphereCollider.radius += propagationSpeedPerSec * Time.deltaTime;
 		
-		if (sphereCollider.radius > maxPropagation)
-			sphereCollider.radius = maxPropagation;
+		/*if (sphereCollider.radius > maxPropagation)
+			sphereCollider.radius = maxPropagation;*/
 
-		if (sphereCollider.radius == maxPropagation) {
+		if (sphereCollider.radius /*==*/ > maxPropagation) {
 			//Start wave movement decay
 			propagationSpeedPerSec -= Time.deltaTime*decay;
 			if (propagationSpeedPerSec < 0)
 				propagationSpeedPerSec = 0;
+			
+			if (propagationSpeedPerSec == 0)
+				Destroy (this.gameObject);
 		}
 	}
 	
@@ -68,7 +71,11 @@ public class SineDeform : MonoBehaviour {
 				float distance = Vector3.Distance (verticeWorldSpacePos, transform.position);
 				//Debug.Log (distance);
 				if (distance<=sphereCollider.radius) {
-					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-(waveTimer))*(frequency))*(startHeight), vertices[i].z);
+					float distanceHeightRatio = startHeight - distance/maxPropagation;
+					if (distanceHeightRatio < 0)
+						distanceHeightRatio = 0;
+					
+					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-(waveTimer))*(frequency))*(/*startHeight*2/waveTimer*/distanceHeightRatio), vertices[i].z);
 				}
 				i++;
 			}
