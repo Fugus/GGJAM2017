@@ -7,7 +7,6 @@ public class ThirdPersonCharacter : MonoBehaviour
 {
     [SerializeField] float m_MovingTurnSpeed = 360;
     [SerializeField] float m_StationaryTurnSpeed = 180;
-    [SerializeField] float m_JumpPower = 12f;
     [SerializeField] float m_StompPower = 12f;
     [Range(1f, 4f)] [SerializeField] float m_GravityMultiplier = 2f;
     [SerializeField] float m_MoveSpeedMultiplier = 1f;
@@ -23,6 +22,13 @@ public class ThirdPersonCharacter : MonoBehaviour
     Vector3 m_GroundNormal;
     SphereCollider m_SphereCollider;
 
+    [HeaderAttribute("Jump")]
+    [SerializeField]
+    private float _raycastLengthForGroundNormal = 3f;
+    [SerializeField]
+    private LayerMask _layersToConsiderForGroundNormal;
+    [SerializeField]
+    float m_JumpPower = 12f;
 
     void Start()
     {
@@ -107,8 +113,16 @@ public class ThirdPersonCharacter : MonoBehaviour
         // check whether conditions are right to allow a jump:
         if (jump && !crouch && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
         {
+            Vector3 jumpDirection = Vector3.up;
+            RaycastHit result;
+
+            if (Physics.Raycast(transform.position, Vector3.down, out result, _raycastLengthForGroundNormal, _layersToConsiderForGroundNormal))
+            {
+                jumpDirection = result.normal;
+            }
+
             // jump!
-            m_Rigidbody.AddRelativeForce(Vector3.up * m_JumpPower, ForceMode.Impulse);
+            m_Rigidbody.AddForce(jumpDirection * m_JumpPower, ForceMode.Impulse);
             m_IsGrounded = false;
             m_GroundCheckDistance = 0.1f;
         }
