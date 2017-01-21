@@ -108,7 +108,16 @@ public class ThirdPersonCharacter : MonoBehaviour
         }
         move = transform.InverseTransformDirection(move);
         CheckGroundStatus();
+        float previousMagnitude = move.magnitude;
         move = Vector3.ProjectOnPlane(move, m_GroundNormal);
+        move = move.normalized * previousMagnitude;
+
+        Vector3 transformForwardOnGroundPlane = Vector3.ProjectOnPlane(transform.forward, m_GroundNormal);
+#if UNITY_EDITOR
+        // helper to visualise the ground check ray in the scene view
+        Debug.DrawLine(transform.position, transform.position + transformForwardOnGroundPlane, Color.red);
+#endif
+
         m_TurnAmount = Mathf.Atan2(move.x, move.z);
         m_ForwardAmount = move.z;
 
@@ -163,7 +172,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         if (Time.deltaTime > 0)
         {
             m_Rigidbody.AddRelativeTorque(Vector3.up * m_TurnAmount, ForceMode.VelocityChange);
-            m_Rigidbody.AddRelativeForce(Vector3.forward * m_ForwardAmount * moveSpeedMultiplier, ForceMode.VelocityChange);
+            m_Rigidbody.AddForce(transformForwardOnGroundPlane * m_ForwardAmount * moveSpeedMultiplier, ForceMode.VelocityChange);
         }
     }
 

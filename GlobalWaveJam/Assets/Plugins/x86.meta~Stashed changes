@@ -1,0 +1,62 @@
+fileFormatVersion: 2
+<<<<<<< Updated upstream:GlobalWaveJam/Assets/Plugins/x86_64/XInputInterface.dll.meta
+guid: f137df3bc3085f04a8afd6154abebd68
+timeCreated: 1485031034
+licenseType: Pro
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  isOverridable: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        CPU: x86_64
+        DefaultValueInitialized: true
+    Linux:
+      enabled: 0
+      settings:
+        CPU: None
+    Linux64:
+      enabled: 1
+      settings:
+        CPU: x86_64
+    LinuxUniversal:
+      enabled: 1
+      settings:
+        CPU: x86_64
+    OSXIntel:
+      enabled: 0
+      settings:
+        CPU: None
+    OSXIntel64:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+    OSXUniversal:
+      enabled: 0
+      settings:
+        CPU: x86_64
+    Win:
+      enabled: 0
+      settings:
+        CPU: None
+    Win64:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+=======
+guid: 08b30c4ae656a1a47a93cbfd6f15bac8
+folderAsset: yes
+timeCreated: 1485030593
+licenseType: Pro
+DefaultImporter:
+>>>>>>> Stashed changes:GlobalWaveJam/Assets/Plugins/x86.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
