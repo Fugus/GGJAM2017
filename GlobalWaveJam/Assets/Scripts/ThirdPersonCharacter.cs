@@ -4,26 +4,52 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(DeformSpawner))]
+[RequireComponent(typeof(KeepAboveGround))]
 public class ThirdPersonCharacter : MonoBehaviour
 {
     public Animator m_Animator;
 
     Rigidbody m_Rigidbody;
-    bool m_IsGrounded;
+    private bool m_IsGroundedActual;
+    bool m_IsGrounded
+    {
+        get
+        {
+            return m_IsGroundedActual;
+        }
+        set
+        {
+            bool wasGrounded = m_IsGrounded;
+            m_IsGroundedActual = value;
+
+            if (wasGrounded && !m_IsGrounded)
+            {
+                // Became aiborne
+            }
+            else if (!wasGrounded && m_IsGrounded)
+            {
+                // Just landed
+                if (m_IsStomping)
+                {
+                    m_DeformSpawner.SpawnDeform(transform.position);
+                    m_IsStomping = false;
+                }
+            }
+        }
+    }
     float m_OrigGroundCheckDistance;
     float m_TurnAmount;
     float m_ForwardAmount;
     Vector3 m_GroundNormal;
     SphereCollider m_SphereCollider;
     DeformSpawner m_DeformSpawner;
+    KeepAboveGround m_KeepAboveGround;
     bool m_IsStomping = false;
 
     [SerializeField]
     float m_StompPower = 12f;
     [SerializeField]
     private LayerMask _layersToConsiderForGround;
-    [SerializeField]
-    float m_BelowGroundCheckDistance = 10f;
 
     [HeaderAttribute("Grounded Control")]
     [SerializeField]
@@ -50,14 +76,25 @@ public class ThirdPersonCharacter : MonoBehaviour
     [SerializeField]
     float m_JumpPower = 12f;
 
-    void Start()
+    void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_SphereCollider = GetComponent<SphereCollider>();
         m_DeformSpawner = GetComponent<DeformSpawner>();
+        m_KeepAboveGround = GetComponent<KeepAboveGround>();
 
         m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         m_OrigGroundCheckDistance = m_GroundCheckDistance;
+    }
+
+    public void OnEnable()
+    {
+        m_KeepAboveGround.OnKeptAboveGround += OnKeptAboveGround;
+    }
+
+    public void OnDisable()
+    {
+        m_KeepAboveGround.OnKeptAboveGround -= OnKeptAboveGround;
     }
 
     public void Move(Vector3 move, bool crouch, bool jump)
@@ -146,10 +183,8 @@ public class ThirdPersonCharacter : MonoBehaviour
 #if UNITY_EDITOR
         // helper to visualise the ground check ray in the scene view
         Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
-        Debug.DrawLine(transform.position + m_BelowGroundCheckDistance * Vector3.up, transform.position, Color.cyan);
 #endif
 
-        bool wasGrounded = m_IsGrounded;
         RaycastHit hitInfo;
 
         // 0.1f is a small offset to start the ray from inside the character 
@@ -163,31 +198,12 @@ public class ThirdPersonCharacter : MonoBehaviour
         {
             m_IsGrounded = false;
             m_GroundNormal = Vector3.up;
-
-            // Not grounded. Check if the ground is above us
-            if (Physics.Raycast(transform.position + m_BelowGroundCheckDistance * Vector3.up, Vector3.down, out hitInfo, m_BelowGroundCheckDistance, _layersToConsiderForGround))
-            {
-                transform.position = hitInfo.point;
-                m_IsGrounded = true;
-                m_GroundNormal = hitInfo.normal;
-            }
         }
+    }
 
-        if (Time.deltaTime > 0)
-        {
-            if (wasGrounded && !m_IsGrounded)
-            {
-                // Became aiborne
-            }
-            else if (!wasGrounded && m_IsGrounded)
-            {
-                // Just landed
-                if (m_IsStomping)
-                {
-                    m_DeformSpawner.SpawnDeform(transform.position);
-                    m_IsStomping = false;
-                }
-            }
-        }
+    private void OnKeptAboveGround(Vector3 newPosition, Vector3 groundNormal)
+    {
+        m_GroundNormal = groundNormal;
+        m_IsGrounded = true;
     }
 }
