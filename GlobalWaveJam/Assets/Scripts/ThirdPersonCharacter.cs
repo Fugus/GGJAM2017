@@ -4,7 +4,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(SphereCollider))]
-    [RequireComponent(typeof(Animator))]
     public class ThirdPersonCharacter : MonoBehaviour
     {
         [SerializeField] float m_MovingTurnSpeed = 360;
@@ -14,9 +13,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [Range(1f, 4f)] [SerializeField] float m_GravityMultiplier = 2f;
         [SerializeField] float m_MoveSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
+        [SerializeField] Animator m_Animator;
 
         Rigidbody m_Rigidbody;
-        Animator m_Animator;
         bool m_IsGrounded;
         float m_OrigGroundCheckDistance;
         float m_TurnAmount;
@@ -27,7 +26,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         void Start()
         {
-            m_Animator = GetComponent<Animator>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_SphereCollider = GetComponent<SphereCollider>();
 
