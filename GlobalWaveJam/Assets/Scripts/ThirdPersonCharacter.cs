@@ -97,7 +97,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         m_KeepAboveGround.OnKeptAboveGround -= OnKeptAboveGround;
     }
 
-    public void Move(Vector3 move, bool crouch, bool jump)
+    public void Move(Vector3 move, ButtonStateEvent force, ButtonStateEvent jump)
     {
         // convert the world relative moveInput vector into a local-relative
         // turn amount and forward amount required to head in the desired
@@ -122,7 +122,7 @@ public class ThirdPersonCharacter : MonoBehaviour
             transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 
             // check whether conditions are right to allow a jump:
-            if (jump && !crouch && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+            if (jump == ButtonStateEvent.Press && force <= ButtonStateEvent.NONE && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
             {
                 // jump!
                 m_Rigidbody.AddForce(m_GroundNormal * m_JumpPower, ForceMode.Impulse);
@@ -144,12 +144,13 @@ public class ThirdPersonCharacter : MonoBehaviour
 
             m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
 
-            if (jump && !crouch && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
+            // stomp!
+            if (jump == ButtonStateEvent.Press && force <= ButtonStateEvent.NONE && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
             {
-                // stomp!
                 m_Rigidbody.AddRelativeForce(-Vector3.up * m_StompPower, ForceMode.Impulse);
                 m_IsStomping = true;
             }
+            // TODO: keep Hold to jump higher :)
 
             moveSpeedMultiplier = m_MoveSpeedMultiplierAirborne;
         }
