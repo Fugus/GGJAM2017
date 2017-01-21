@@ -10,3 +10,21 @@ public enum GameState
     Play,
     Outro,
 }
+
+public enum ControllerSide
+{
+    NONE = -1,
+    Left,
+    Right,
+}
+
+public enum ButtonStateEvent
+{
+    Idle = -2,
+    Release,
+    NONE = 0,
+    Press,
+    Hold,
+    
+    
+}
