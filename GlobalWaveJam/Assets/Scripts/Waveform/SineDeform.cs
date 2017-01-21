@@ -38,10 +38,12 @@ public class SineDeform : MonoBehaviour {
 
 			int i = 0;
 			while (i < vertices.Length) {
-				Vector3 verticeWorldSpacePos = transform.TransformPoint (vertices[i]);
+				Vector3 verticeWorldSpacePos = other.transform.TransformPoint (vertices[i]);
 				float distance = Vector3.Distance (verticeWorldSpacePos, transform.position);
+				//Debug.Log (distance);
 				if (distance<=sphereCollider.radius) {
 					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-Time.time)*frequency)*startHeight, vertices[i].z);
+					//vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin(distance-Time.time), vertices[i].z);
 				}
 				i++;
 			}
