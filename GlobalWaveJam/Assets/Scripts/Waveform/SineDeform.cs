@@ -55,19 +55,17 @@ public class SineDeform : MonoBehaviour {
 			if (propagationSpeedPerSec == 0)
 				Destroy (this.gameObject);
 		}
-	}
-	
-	void OnTriggerStay (Collider other){
-		if (other.tag == tag) {
-			Mesh otherMesh = other.GetComponent<MeshFilter> ().mesh;
+
+		foreach (var deformableObject in deformableList) {
+			Mesh otherMesh = deformableObject.GetComponent<MeshFilter> ().mesh;
 			Vector3[] vertices = otherMesh.vertices;
 			Vector3[] normals = otherMesh.normals;
 
-			MeshCollider otherMeshCollider = other.GetComponent<MeshCollider> ();
+			MeshCollider otherMeshCollider = deformableObject.GetComponent<MeshCollider> ();
 
 			int i = 0;
 			while (i < vertices.Length) {
-				Vector3 verticeWorldSpacePos = other.transform.TransformPoint (vertices[i]);
+				Vector3 verticeWorldSpacePos = deformableObject.transform.TransformPoint (vertices[i]);
 				float distance = Vector3.Distance (verticeWorldSpacePos, transform.position);
 				//Debug.Log (distance);
 				if (distance<=sphereCollider.radius) {
@@ -84,4 +82,42 @@ public class SineDeform : MonoBehaviour {
 			if(otherMeshCollider) otherMeshCollider.sharedMesh = otherMesh;
 		}
 	}
+
+	private List<GameObject> deformableList = new List<GameObject>();
+	void OnTriggerEnter (Collider other){
+		if (other.tag == tag && !deformableList.Contains(other.gameObject)) deformableList.Add (other.gameObject);
+	}
+
+	void OnTriggerExit (Collider other){
+		deformableList.Remove (other.gameObject);
+	}
+
+// Good night sweet prince
+//	void OnTriggerStay (Collider other){
+//		if (other.tag == tag) {
+//			Mesh otherMesh = other.GetComponent<MeshFilter> ().mesh;
+//			Vector3[] vertices = otherMesh.vertices;
+//			Vector3[] normals = otherMesh.normals;
+//
+//			MeshCollider otherMeshCollider = other.GetComponent<MeshCollider> ();
+//
+//			int i = 0;
+//			while (i < vertices.Length) {
+//				Vector3 verticeWorldSpacePos = other.transform.TransformPoint (vertices[i]);
+//				float distance = Vector3.Distance (verticeWorldSpacePos, transform.position);
+//				//Debug.Log (distance);
+//				if (distance<=sphereCollider.radius) {
+//					float distanceHeightRatio = startHeight - distance/maxPropagation;
+//					if (distanceHeightRatio < 0)
+//						distanceHeightRatio = 0;
+//					
+//					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-(waveTimer))*(frequency))*(/*startHeight*2/waveTimer*/distanceHeightRatio), vertices[i].z);
+//				}
+//				i++;
+//			}
+//
+//			otherMesh.vertices = vertices;
+//			if(otherMeshCollider) otherMeshCollider.sharedMesh = otherMesh;
+//		}
+//	}
 }
