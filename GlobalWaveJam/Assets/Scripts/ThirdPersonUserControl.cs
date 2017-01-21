@@ -5,6 +5,7 @@ using XInputDotNetPure;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
+    [System.Serializable]
     public class ControllerSettings
     {
         public PlayerIndex Index = PlayerIndex.One;
@@ -22,15 +23,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private ButtonStateEvent m_Force;                   // activate the force field
 
         #region controls settings
-        private ControllerSettings _controls = new ControllerSettings();
-        public ControllerSettings Controls
-        {
-            get { return _controls; }
-            set
-            {
-                _controls = value;
-            }
-        }
+        public ControllerSettings Controls = new ControllerSettings();
+        //public ControllerSettings Controls
+        //{
+        //    get { return _controls; }
+        //    set
+        //    {
+        //        _controls = value;
+        //    }
+        //}
 
         private static ButtonStateEvent ChangeButton(ButtonStateEvent button, bool press)
         {
