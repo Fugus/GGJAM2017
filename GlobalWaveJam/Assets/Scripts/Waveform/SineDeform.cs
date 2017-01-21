@@ -13,7 +13,7 @@ public class SineDeform : MonoBehaviour {
 	private SphereCollider sphereCollider;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		currentFrequency = frequency;
 
 		sphereCollider = GetComponent<SphereCollider> ();

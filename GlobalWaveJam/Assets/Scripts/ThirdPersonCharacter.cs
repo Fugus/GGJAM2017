@@ -3,6 +3,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(DeformSpawner))]
 public class ThirdPersonCharacter : MonoBehaviour
 {
     public Animator m_Animator;
@@ -14,6 +15,8 @@ public class ThirdPersonCharacter : MonoBehaviour
     float m_ForwardAmount;
     Vector3 m_GroundNormal;
     SphereCollider m_SphereCollider;
+    DeformSpawner m_DeformSpawner;
+    bool m_IsStomping = false;
 
     [SerializeField]
     float m_StompPower = 12f;
@@ -51,6 +54,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_SphereCollider = GetComponent<SphereCollider>();
+        m_DeformSpawner = GetComponent<DeformSpawner>();
 
         m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         m_OrigGroundCheckDistance = m_GroundCheckDistance;
@@ -107,6 +111,7 @@ public class ThirdPersonCharacter : MonoBehaviour
             {
                 // stomp!
                 m_Rigidbody.AddRelativeForce(-Vector3.up * m_StompPower, ForceMode.Impulse);
+                m_IsStomping = true;
             }
 
             moveSpeedMultiplier = m_MoveSpeedMultiplierAirborne;
@@ -138,11 +143,15 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     void CheckGroundStatus()
     {
-        RaycastHit hitInfo;
 #if UNITY_EDITOR
         // helper to visualise the ground check ray in the scene view
         Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
+        Debug.DrawLine(transform.position + m_BelowGroundCheckDistance * Vector3.up, transform.position, Color.cyan);
 #endif
+
+        bool wasGrounded = m_IsGrounded;
+        RaycastHit hitInfo;
+
         // 0.1f is a small offset to start the ray from inside the character 
         // it is also good to note that the transform position in the sample assets is at the base of the character
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance, _layersToConsiderForGround))
@@ -155,14 +164,29 @@ public class ThirdPersonCharacter : MonoBehaviour
             m_IsGrounded = false;
             m_GroundNormal = Vector3.up;
 
-#if UNITY_EDITOR
-            // helper to visualise the ground check ray in the scene view
-            Debug.DrawLine(transform.position + m_BelowGroundCheckDistance * Vector3.up, transform.position, Color.cyan);
-#endif
             // Not grounded. Check if the ground is above us
             if (Physics.Raycast(transform.position + m_BelowGroundCheckDistance * Vector3.up, Vector3.down, out hitInfo, m_BelowGroundCheckDistance, _layersToConsiderForGround))
             {
                 transform.position = hitInfo.point;
+                m_IsGrounded = true;
+                m_GroundNormal = hitInfo.normal;
+            }
+        }
+
+        if (Time.deltaTime > 0)
+        {
+            if (wasGrounded && !m_IsGrounded)
+            {
+                // Became aiborne
+            }
+            else if (!wasGrounded && m_IsGrounded)
+            {
+                // Just landed
+                if (m_IsStomping)
+                {
+                    m_DeformSpawner.SpawnDeform(transform.position);
+                    m_IsStomping = false;
+                }
             }
         }
     }
