@@ -50,7 +50,9 @@ public class SineDeform : MonoBehaviour {
 			//Start wave movement decay
 			propagationSpeedPerSec -= Time.deltaTime*decay;
 			if (propagationSpeedPerSec < 0)
-				propagationSpeedPerSec = 0;
+				{
+					GameObject.Destroy(gameObject);
+				}
 		}
 	}
 	

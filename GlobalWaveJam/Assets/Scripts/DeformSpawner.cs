@@ -11,11 +11,8 @@ public class DeformSpawner : MonoBehaviour
 
     public void SpawnDeform(Vector3 targetPosition)
     {
-        if (_instantiatedDeform == null)
-        {
-            GameObject instantiatedDeformGO = GameObject.Instantiate(deformToSpawnPrefab);
-            _instantiatedDeform = instantiatedDeformGO.transform;
-        }
+        GameObject instantiatedDeformGO = GameObject.Instantiate(deformToSpawnPrefab);
+        _instantiatedDeform = instantiatedDeformGO.transform;
         _instantiatedDeform.position = targetPosition;
     }
 }
