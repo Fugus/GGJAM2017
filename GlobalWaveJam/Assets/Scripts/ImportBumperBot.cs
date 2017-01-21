@@ -26,12 +26,17 @@ public class ImportBumperBot : MonoBehaviour
 
 
             characterController.m_Animator = botTransform.GetComponent<Animator>();
-			characterController.m_Animator.runtimeAnimatorController = characterAnimatorController;
-			
-            if (reactorTransform.GetComponent<OrientReactor>() == null)
+            characterController.m_Animator.runtimeAnimatorController = characterAnimatorController;
+
+
+            OrientReactor orientReactorComponent = reactorTransform.GetComponent<OrientReactor>();
+            if (orientReactorComponent == null)
             {
-                reactorTransform.gameObject.AddComponent<OrientReactor>();
+                orientReactorComponent = reactorTransform.gameObject.AddComponent<OrientReactor>();
             }
+            orientReactorComponent._layersToConsider.value = 1 << LayerMask.NameToLayer("Ground");
+
+            UnityEditor.EditorUtility.SetDirty(gameObject);
         }
 
     }

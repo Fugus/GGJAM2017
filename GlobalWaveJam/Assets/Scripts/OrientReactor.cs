@@ -7,8 +7,7 @@ public class OrientReactor : MonoBehaviour
     [SerializeField]
     private float _raycastLength = 3f;
 
-    [SerializeField]
-    private LayerMask _layersToConsider;
+    public LayerMask _layersToConsider;
 
     void LateUpdate()
     {
