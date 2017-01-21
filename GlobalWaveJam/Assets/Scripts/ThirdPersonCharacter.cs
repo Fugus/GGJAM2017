@@ -69,7 +69,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // this allows us to modify the positional speed before it's applied.
             if (m_IsGrounded && Time.deltaTime > 0)
             {
-                //Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
                 m_Rigidbody.AddRelativeTorque(Vector3.up * m_TurnAmount, ForceMode.VelocityChange);
                 m_Rigidbody.AddRelativeForce(Vector3.forward * m_ForwardAmount * m_MoveSpeedMultiplier, ForceMode.VelocityChange);
             }
