@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UIMain : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         // define delegates
         GameLogic.Instance.StateEvent += OnGameState;
     }
