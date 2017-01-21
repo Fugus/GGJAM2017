@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class SineDeform : MonoBehaviour {
 
+	//Propagation of wave
+	public float propagationSpeedPerSec = 2;
+	public float maxPropagation = 10;
+
+	//Wave Movement duration AFTER maxPropagation is achieved
+	public float decay = 1;
+
+	//Amount of waves
 	public float frequency = 1;
-	public float frequencyDecay = 0.1f;
+	//public float frequencyDecay = 0.1f;
 	private float currentFrequency;
 
+	//Height of waves
 	public float startHeight = 1;
+
+	//WaveTimer
+	private float waveTimer = 1;
 
 	private SphereCollider sphereCollider;
 
@@ -24,11 +36,25 @@ public class SineDeform : MonoBehaviour {
 		/*Vector3 newPosition = new Vector3 (0, 0, 0);
 		transform.position = new Vector3 (transform.position.x, Mathf.Sin(1*Time.time)*startHeight, transform.position.z);
 		currentFrequency += frequencyDecay * Time.deltaTime;*/
-		sphereCollider.radius+=0.1f * Time.deltaTime;
+
+		waveTimer += Time.deltaTime*propagationSpeedPerSec;
+		//Debug.Log (Time.time);
+
+		if(sphereCollider.radius < maxPropagation) 
+			sphereCollider.radius += propagationSpeedPerSec * Time.deltaTime;
+		
+		if (sphereCollider.radius > maxPropagation)
+			sphereCollider.radius = maxPropagation;
+
+		if (sphereCollider.radius == maxPropagation) {
+			//Start wave movement decay
+			propagationSpeedPerSec -= Time.deltaTime*decay;
+			if (propagationSpeedPerSec < 0)
+				propagationSpeedPerSec = 0;
+		}
 	}
 	
 	void OnTriggerStay (Collider other){
-		Debug.Log ("COLLIDE");
 		if (other.tag == tag) {
 			Mesh otherMesh = other.GetComponent<MeshFilter> ().mesh;
 			Vector3[] vertices = otherMesh.vertices;
@@ -42,11 +68,11 @@ public class SineDeform : MonoBehaviour {
 				float distance = Vector3.Distance (verticeWorldSpacePos, transform.position);
 				//Debug.Log (distance);
 				if (distance<=sphereCollider.radius) {
-					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-Time.time)*frequency)*startHeight, vertices[i].z);
-					//vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin(distance-Time.time), vertices[i].z);
+					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-(waveTimer))*(frequency))*(startHeight), vertices[i].z);
 				}
 				i++;
 			}
+
 			otherMesh.vertices = vertices;
 			if(otherMeshCollider) otherMeshCollider.sharedMesh = otherMesh;
 		}
