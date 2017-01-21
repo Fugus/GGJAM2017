@@ -10,6 +10,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
+        [SerializeField] float m_StompPower = 12f;
         [Range(1f, 4f)] [SerializeField] float m_GravityMultiplier = 2f;
         [SerializeField] float m_MoveSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
@@ -59,7 +60,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             else
             {
-                HandleAirborneMovement();
+                HandleAirborneMovement(crouch, jump);
             }
 
             // send input and other state parameters to the animator
@@ -67,9 +68,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // we implement this function to override the default root motion.
             // this allows us to modify the positional speed before it's applied.
-            if (m_IsGrounded && Time.deltaTime > 0)
+            if (/*m_IsGrounded && */Time.deltaTime > 0)
             {
-                //Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
                 m_Rigidbody.AddRelativeTorque(Vector3.up * m_TurnAmount, ForceMode.VelocityChange);
                 m_Rigidbody.AddRelativeForce(Vector3.forward * m_ForwardAmount * m_MoveSpeedMultiplier, ForceMode.VelocityChange);
             }
@@ -88,13 +88,19 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 
-        void HandleAirborneMovement()
+        void HandleAirborneMovement(bool crouch, bool jump)
         {
             // apply extra gravity from multiplier:
             Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
             m_Rigidbody.AddForce(extraGravityForce);
 
             m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
+
+            if (jump && !crouch && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
+            {
+                // stomp!
+                m_Rigidbody.AddRelativeForce(-Vector3.up * m_StompPower, ForceMode.Impulse);
+            }
         }
 
 
@@ -104,9 +110,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (jump && !crouch && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
             {
                 // jump!
-                m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
+                m_Rigidbody.AddRelativeForce(Vector3.up * m_JumpPower, ForceMode.Impulse);
                 m_IsGrounded = false;
-                m_Animator.applyRootMotion = false;
                 m_GroundCheckDistance = 0.1f;
             }
         }
