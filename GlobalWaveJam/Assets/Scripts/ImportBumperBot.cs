@@ -8,6 +8,9 @@ public class ImportBumperBot : MonoBehaviour
 #if UNITY_EDITOR
     public bool DoImport = false;
 
+    [SerializeField]
+    private RuntimeAnimatorController characterAnimatorController;
+
     private void Update()
     {
         if (DoImport)
@@ -23,6 +26,8 @@ public class ImportBumperBot : MonoBehaviour
 
 
             characterController.m_Animator = botTransform.GetComponent<Animator>();
+			characterController.m_Animator.runtimeAnimatorController = characterAnimatorController;
+			
             if (reactorTransform.GetComponent<OrientReactor>() == null)
             {
                 reactorTransform.gameObject.AddComponent<OrientReactor>();
