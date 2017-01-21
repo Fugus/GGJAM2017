@@ -1770,8 +1770,8 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!95 &95106656304208192
+  m_CollisionDetection: 1
+--- !u!95 &95708408138712642
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -2428,9 +2428,10 @@ MonoBehaviour:
   m_GroundCheckDistance: 0.4
   m_MovingTurnSpeedAirborne: 360
   m_StationaryTurnSpeedAirborne: 180
-  m_MoveSpeedMultiplierAirborne: 0.5
-  m_GravityMultiplier: 2
-  m_JumpPower: 12
+  m_MoveSpeedMultiplierAirborne: 1
+  m_GravityMultiplier: 4
+  m_JumpPower: 10
+  m_JetpackPower: 30
 --- !u!114 &114882113346025728
 MonoBehaviour:
   m_ObjectHideFlags: 1
