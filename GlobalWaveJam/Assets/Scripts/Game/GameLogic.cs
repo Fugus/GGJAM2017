@@ -82,7 +82,7 @@ public class GameLogic : Singleton<GameLogic>
 
     private AudioSource BGM;
     private float StateTime;
-
+    public CosmeticSettings PermanentSettings = new CosmeticSettings();
 
     #region game state
     private GameState _state = GameState.NONE;
@@ -105,6 +105,12 @@ public class GameLogic : Singleton<GameLogic>
             // callback
             if (Instance.StateEvent != null)
                 Instance.StateEvent(State);
+
+            // Play BGM
+            if (Instance._state != GameState.NONE && Instance.PermanentSettings.BGMs.Count > (int)Instance._state)
+            {
+                PlayBGM(Instance.PermanentSettings.BGMs[(int)Instance._state]);
+            }
 
             // set state specific logic here
             switch (Instance._state)
