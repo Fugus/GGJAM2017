@@ -9,6 +9,7 @@ public enum GameState
     Intro,
     Play,
     Outro,
+    Results,
 }
 
 public enum ControllerSide

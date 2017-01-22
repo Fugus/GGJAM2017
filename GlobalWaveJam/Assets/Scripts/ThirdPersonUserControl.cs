@@ -80,6 +80,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
+            if (GameLogic.State != GameState.Play)
+                return;
+
             GamePadState state = GamePad.GetState(Controls.Index);
             if (state.IsConnected == false)
                 return;

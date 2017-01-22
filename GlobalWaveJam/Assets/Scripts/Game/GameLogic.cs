@@ -27,6 +27,16 @@ public static class GameSettings
         {  RumbleEvent.Win, new RumbleSettings() { force = 3f, time = 1f } },
     };
 
+    public static Dictionary<GameState, float> StateTimes = new Dictionary<GameState, float>()
+    {
+        { GameState.NONE, -1f },
+        { GameState.Intro, .1f },
+        { GameState.Play, -1 },
+        { GameState.Menu, -1 },
+        { GameState.Outro, 2 },
+        { GameState.Results, -1 },
+    };
+
 }
 
 public class RumbleSettings
@@ -71,6 +81,7 @@ public class GameLogic : Singleton<GameLogic>
     #endregion
 
     private AudioSource BGM;
+    private float StateTime;
 
 
     #region game state
@@ -89,6 +100,7 @@ public class GameLogic : Singleton<GameLogic>
                 return;
 
             Instance._state = value;
+            Instance.StateTime = 0;
 
             // callback
             if (Instance.StateEvent != null)
@@ -121,7 +133,7 @@ public class GameLogic : Singleton<GameLogic>
                 case GameState.Play:
                     break;
 
-                case GameState.Outro:
+                case GameState.Results:
                     Debug.Log("End game !");
                     // load
                     SceneManager.LoadScene("UIResults"); //, LoadSceneMode.Additive);
@@ -168,7 +180,21 @@ public class GameLogic : Singleton<GameLogic>
     // Update is called once per frame
     void Update()
     {
+        StateTime += Time.deltaTime;
+        if (GameSettings.StateTimes[State] >= 0 && StateTime > GameSettings.StateTimes[State])
+        {
 
+            switch (Instance._state)
+            {
+                case GameState.Intro:
+                    State = GameState.Play;
+                    break;
+
+                case GameState.Outro:
+                    State = GameState.Results;
+                    break;
+            }
+        }
     }
 
 

@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class CosmeticSettings
+public class UIGame : MonoBehaviour
 {
-    public List<AudioClip> BGMs = new List<AudioClip>();
-}
-
-    public class UIMain : MonoBehaviour {
-
-    public CosmeticSettings Settings = new CosmeticSettings();
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         // define delegates
         GameLogic.Instance.StateEvent += OnGameState;
-
-        GameLogic.State = GameState.Menu;
-
+        GameLogic.State = GameState.Intro;
     }
 
     // Update is called once per frame
@@ -26,14 +18,6 @@ public class CosmeticSettings
     {
 
     }
-
-    #region UI calls
-    public void StartGame()
-    {
-        // set 1st state
-        GameLogic.State = GameState.Intro;
-    }
-    #endregion
 
     #region callbacks
     void OnDestroy()
@@ -56,14 +40,12 @@ public class CosmeticSettings
             case GameState.Intro:
                 break;
 
+            case GameState.Outro:
+                GetComponent<CanvasGroup>().alpha = 1;
+                break;
+
             default:
                 break;
-        }
-
-        // Play BGM
-        if (state != GameState.NONE && Settings.BGMs.Count > (int)state )
-        {
-            GameLogic.PlayBGM(Settings.BGMs[(int)state]);
         }
     }
     #endregion
