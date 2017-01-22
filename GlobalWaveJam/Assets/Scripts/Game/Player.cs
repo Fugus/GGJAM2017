@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-
 #region delegates
 public delegate void DelegateDeath(Player sender);
 #endregion
 
-
+[RequireComponent(typeof(AudioSource))]
 /// <summary>
 /// Manage player game logic stuff (non physical)
 /// </summary>
@@ -18,6 +17,9 @@ public class Player : MonoBehaviour
     public Material Emission;
     public Material Skinned;
     public int Index;
+
+	AudioSource m_audioSource;
+	public AudioClip m_AudioDeath;
     #endregion
 
     #region variables
@@ -32,7 +34,8 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        foreach (TrailRenderer r in GetComponentsInChildren<TrailRenderer>())
+		m_audioSource = GetComponent<AudioSource> ();
+		foreach (TrailRenderer r in GetComponentsInChildren<TrailRenderer>())
         {
             // change emissive in trails
             if (Emission != null)
@@ -80,6 +83,8 @@ public class Player : MonoBehaviour
         // kill and score
         Alive = false;
         GetComponent<ThirdPersonUserControl>().enabled = false;
+
+		m_audioSource.PlayOneShot (m_AudioDeath);
 
         if (DeathEvent != null)
             DeathEvent(this);
