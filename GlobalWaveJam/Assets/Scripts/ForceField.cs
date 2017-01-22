@@ -51,6 +51,7 @@ public class ForceField : MonoBehaviour
             Vector3 toCollider = collider.transform.position - transform.position;
             toCollider.Normalize();
             collider.GetComponent<Rigidbody>().AddForce(forceStrength * toCollider, ForceMode.Impulse);
+            collider.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.ForceHit].force, GameSettings.Rumble[RumbleEvent.ForceHit].time);
         }
     }
 }
