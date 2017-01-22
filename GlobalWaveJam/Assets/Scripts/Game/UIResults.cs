@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIResults : MonoBehaviour
 {
+    public static int pointsPerIcon = 10;
+    public static int maxScore = 50;
 
     // Use this for initialization
     void Start()
@@ -25,7 +27,19 @@ public class UIResults : MonoBehaviour
                 {
                     t.text = "" + newscore;
                     Debug.Log(dbgtxt + "\n" + t.name + " " + t.text);
+
+                    for (int i = pointsPerIcon; i < maxScore; i += pointsPerIcon)
+                    {
+                        GameObject obj = t.transform.FindChild("Score" + i / pointsPerIcon).gameObject;
+                        obj.GetComponent<CanvasGroup>().alpha = (newscore >= i ? 1 : 0);
+
+                        if (p.Score < i && newscore >= i)
+                        {
+                            obj.GetComponent<Animation>().Play();
+                        }
+                    }
                 }
+
             }
         }
     }
