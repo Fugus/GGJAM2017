@@ -24,12 +24,12 @@ public class KeepAboveGround : MonoBehaviour
     {
 #if UNITY_EDITOR
         // helper to visualise the ground check ray in the scene view
-        Debug.DrawLine(transform.position + m_BelowGroundCheckDistance * Vector3.up, transform.position, Color.cyan);
+        Debug.DrawLine(transform.position + Vector3.up * 0.1f + m_BelowGroundCheckDistance * Vector3.up, transform.position + Vector3.up * 0.1f , Color.cyan);
 #endif
 
         RaycastHit hitInfo;
         // Not grounded. Check if the ground is above us
-        if (Physics.Raycast(transform.position + m_BelowGroundCheckDistance * Vector3.up, Vector3.down, out hitInfo, m_BelowGroundCheckDistance, _layersToConsiderForGround))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.1f + m_BelowGroundCheckDistance * Vector3.up, Vector3.down, out hitInfo, m_BelowGroundCheckDistance, _layersToConsiderForGround))
         {
             transform.position = hitInfo.point;
             if (OnKeptAboveGround != null)

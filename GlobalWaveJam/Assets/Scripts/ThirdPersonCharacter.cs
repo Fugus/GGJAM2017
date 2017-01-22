@@ -51,7 +51,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     ForceFieldSpawner m_ForceFieldSpawner;
     KeepAboveGround m_KeepAboveGround;
     bool m_IsStomping = false;
-    bool m_HasReleasedJump = true;
+    bool m_HasReleasedJump = false;
 
     [SerializeField]
     float m_StompPower = 12f;
