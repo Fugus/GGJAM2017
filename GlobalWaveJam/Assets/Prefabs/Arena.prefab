@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 92269990642146810}
   - component: {fileID: 124792641750473444}
   - component: {fileID: 81376353523433646}
+  - component: {fileID: 114362817613374138}
   - component: {fileID: 114374365887905650}
   - component: {fileID: 114471597121035732}
   m_Layer: 0
@@ -262,6 +263,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnPoint: {x: 2.56, y: 12, z: -6.22}
+--- !u!114 &114362817613374138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1955324327283024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a47a3cb01188543b8e194d654ad3eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 82cd0b903d42a3940bf7064a0f5dbe6d, type: 3}
+  verts_force: 0.25
+  verts_force_2: 0.25
+  scanColor: 0.25
+  contrast: -2
+  brightness: 0
 --- !u!114 &114374365887905650
 MonoBehaviour:
   m_ObjectHideFlags: 1
