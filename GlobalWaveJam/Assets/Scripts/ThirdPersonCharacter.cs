@@ -51,7 +51,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     ForceFieldSpawner m_ForceFieldSpawner;
     KeepAboveGround m_KeepAboveGround;
     bool m_IsStomping = false;
-    bool m_HasReleasedJump = false;
+    bool m_HasReleasedJump = true;
 
     [SerializeField]
     float m_StompPower = 12f;
@@ -175,7 +175,6 @@ public class ThirdPersonCharacter : MonoBehaviour
                 {
                     if (jump == ButtonStateEvent.Hold)
                     {
-                        Debug.Log("Jetpakcing");
                         // jetpack!
                         m_Rigidbody.AddForce(m_GroundNormal * m_JetpackPower, ForceMode.Force);
                     }

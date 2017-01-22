@@ -2425,7 +2425,7 @@ MonoBehaviour:
   m_MovingTurnSpeedGrounded: 360
   m_StationaryTurnSpeedGrounded: 180
   m_MoveSpeedMultiplierGrounded: 1
-  m_GroundCheckDistance: 0.4
+  m_GroundCheckDistance: 0.8
   m_MovingTurnSpeedAirborne: 360
   m_StationaryTurnSpeedAirborne: 180
   m_MoveSpeedMultiplierAirborne: 1
