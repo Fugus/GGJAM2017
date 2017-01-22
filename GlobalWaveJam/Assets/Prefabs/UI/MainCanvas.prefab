@@ -1695,10 +1695,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Settings:
     BGMs:
-    - {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
-    - {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
-    - {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
-    - {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
+    - {fileID: 8300000, guid: aafb3a3abff5af54db7b3ec4f174f6fe, type: 3}
+    - {fileID: 8300000, guid: a533ae92eaec4e84cba8844e357a9af0, type: 3}
+    - {fileID: 8300000, guid: aafb3a3abff5af54db7b3ec4f174f6fe, type: 3}
+    - {fileID: 8300000, guid: 00dedffa0cc02944ea31019e2bde17f0, type: 3}
+    - {fileID: 8300000, guid: f4089f36bb061e2409bf41241366b8b3, type: 3}
 --- !u!114 &114653781209278546
 MonoBehaviour:
   m_ObjectHideFlags: 1
