@@ -215,37 +215,49 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.0015343954
-      value: 1.0003651
+      time: 0.0012964276
+      value: -0.016915962
       inSlope: 0
+      outSlope: 6.658363
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.18208678
+      value: 0.99486345
+      inSlope: 1.3156816
+      outSlope: 0.65016246
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.4166783
+      value: 0.6631109
+      inSlope: -4.1429915
+      outSlope: -3.6341984
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.601422
+      value: -1.0055189
+      inSlope: -2.743853
+      outSlope: -2.8383174
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.7957746
+      value: -1.0140179
+      inSlope: 1.8990418
+      outSlope: 1.990017
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.0005703
+      value: -0.01985921
+      inSlope: 2.7104099
       outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.6349739
-      value: 1.6558961
-      inSlope: 1.0348754
-      outSlope: -39.710896
-      tangentMode: 69
-    - serializedVersion: 2
-      time: 0.65145665
-      value: 1.0013505
-      inSlope: -39.710896
-      outSlope: -1.4650198
-      tangentMode: 69
-    - serializedVersion: 2
-      time: 1.0008082
-      value: 0.48954353
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      tangentMode: 1
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   propagationSpeedPerSec: 20
   maxPropagation: 30
   movementDecay: 10
-  frequency: 1.2
-  waveHeight: 2
+  frequency: 2
+  waveHeight: 1
   higherHeightByDist: 0
 --- !u!135 &135284294613888116
 SphereCollider:
