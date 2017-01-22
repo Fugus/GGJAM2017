@@ -1339,7 +1339,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851729782310064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 10.21, z: -0.41}
+  m_LocalPosition: {x: -1.53, y: 10.21, z: -6.94}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4212191843076612}
@@ -2457,9 +2457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1b0848f75eaba4fae88874e78bb2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Emission: {fileID: 2100000, guid: d1fb58571d543a54a86f006e73564f3d, type: 2}
-  Skinned: {fileID: 2100000, guid: 52bccf60be173244cbea215a40f3ddd8, type: 2}
-  Index: 3
+  Emission: {fileID: 2100000, guid: 3eda813633f793e43b5e5e99387d6eec, type: 2}
+  Skinned: {fileID: 2100000, guid: 3fba47dfeb242ef449798ebb91b5a711, type: 2}
+  Index: 1
   VFXPrefabs:
   - {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3, type: 2}
   Alive: 1
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controls:
     Index: 1
-    Side: 0
+    Side: 1
 --- !u!135 &135700785619485856
 SphereCollider:
   m_ObjectHideFlags: 1
