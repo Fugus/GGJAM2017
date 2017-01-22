@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4225765971418590}
   - component: {fileID: 114086833906065574}
   - component: {fileID: 65580930978559322}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: killFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ Camera:
   far clip plane: 1000
   field of view: 53
   orthographic: 1
-  orthographic size: 5.02
+  orthographic size: 5.71
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca79c988229c4e48a0e4fe14bd72c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPoint: {x: 0, y: 20, z: 0}
+  SpawnPoint: {x: 2.56, y: 12, z: -6.22}
 --- !u!114 &114374365887905650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,10 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweakMode: 1
   screenBlendMode: 1
-  hdr: 1
+  hdr: 2
   sepBlurSpread: 0.1
   quality: 1
-  bloomIntensity: 2.84
+  bloomIntensity: 1.5
   bloomThreshold: 0.3
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 1
