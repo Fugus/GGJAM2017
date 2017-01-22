@@ -39,7 +39,7 @@ public class GameLogic : Singleton<GameLogic>
                     break;
 
                 case GameState.Intro:
-                    SceneManager.LoadScene("Game");
+                    SceneManager.LoadScene("Test_CB");
                     break;
 
                 case GameState.Play:
