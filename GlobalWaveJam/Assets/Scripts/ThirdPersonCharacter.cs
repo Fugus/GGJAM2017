@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+
+[RequireComponent(typeof(Player))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(DeformSpawner))]
@@ -173,7 +175,6 @@ public class ThirdPersonCharacter : MonoBehaviour
                 {
                     if (jump == ButtonStateEvent.Hold)
                     {
-                        Debug.Log("Jetpakcing");
                         // jetpack!
                         m_Rigidbody.AddForce(m_GroundNormal * m_JetpackPower, ForceMode.Force);
                     }

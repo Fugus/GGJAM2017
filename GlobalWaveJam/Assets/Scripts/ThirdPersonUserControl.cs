@@ -3,6 +3,7 @@ using UnityEngine;
 //using UnityStandardAssets.CrossPlatformInput;
 using XInputDotNetPure;
 
+
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [System.Serializable]

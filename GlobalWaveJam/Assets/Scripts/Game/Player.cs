@@ -1,7 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
+
+#region delegates
+public delegate void DelegateDeath(Player sender);
+#endregion
+
+
+/// <summary>
+/// Manage player game logic stuff (non physical)
+/// </summary>
 public class Player : MonoBehaviour
 {
     #region settings
@@ -9,6 +19,13 @@ public class Player : MonoBehaviour
     public Material Skinned;
     #endregion
 
+    #region variables
+    public bool Alive = true;
+    #endregion
+
+    #region events
+    public event DelegateDeath DeathEvent;
+    #endregion
 
     // Use this for initialization
     void Start()
@@ -30,7 +47,7 @@ public class Player : MonoBehaviour
             if (temp.Length > 1 && Skinned != null)
                 temp[1] = Skinned;
             r.materials = temp;
-            Debug.Log(r.gameObject.name + ":" + r.materials.Length);
+            //Debug.Log(r.gameObject.name + ":" + r.materials.Length);
         }
 
         // change characters skinned material (skin anim models such as robot)
@@ -40,6 +57,9 @@ public class Player : MonoBehaviour
                 r.material = Skinned;
         }
 
+        // register to game logic (for faster reference)
+        GameLogic.Players.Add(new PlayerStats() { Chara = this });
+        DeathEvent += GameLogic.Instance.OnDeath;
     }
 
     // Update is called once per frame
@@ -47,4 +67,16 @@ public class Player : MonoBehaviour
     {
 
     }
+
+    #region tracking
+    public void Die()
+    {
+        // kill and score
+        Alive = false;
+        GetComponent<ThirdPersonUserControl>().enabled = false;
+
+        if (DeathEvent != null)
+            DeathEvent(this);
+    }
+    #endregion
 }

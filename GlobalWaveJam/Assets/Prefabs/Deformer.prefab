@@ -68,11 +68,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2f13e265b1d0c429722640412c79f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propagationSpeedPerSec: 2
-  maxPropagation: 10
-  decay: 1
+  waveHeightFromDistanceToEdge:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.29999998
+      value: 1
+      inSlope: -0.016304694
+      outSlope: -0.016304694
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.697611
+      value: 0.4716059
+      inSlope: -0.021592163
+      outSlope: -0.021592163
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  propagationSpeedPerSec: 15
+  maxPropagation: 8
+  movementDecay: 10
   frequency: 1
-  startHeight: 1
+  waveHeight: 1
+  higherHeightByDist: 1
 --- !u!135 &135284294613888116
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -83,5 +102,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}

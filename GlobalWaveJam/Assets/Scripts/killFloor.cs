@@ -7,11 +7,16 @@ public class killFloor : MonoBehaviour {
 	public Vector3 SpawnPoint;
 	
 	void OnTriggerEnter (Collider col) {
-		
-		if (col.tag == "Player") {
-			
-			col.transform.position = SpawnPoint;
-		}
+
+        Player p = col.GetComponent<Player>();
+        if (p != null)
+            p.Die();
+            
+
+		//if (col.tag == "Player") {
+  //          Debug.Log(col.gameObject.name);
+		//	col.transform.position = SpawnPoint;
+		//}
 	}
 
 }
