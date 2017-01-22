@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIResults : MonoBehaviour
+public class UIResults : UIMain
 {
     public static int pointsPerIcon = 10;
     public static int maxScore = 50;

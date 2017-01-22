@@ -229,6 +229,7 @@ public class GameLogic : Singleton<GameLogic>
             Instance.BGM.clip = clip;
             Instance.BGM.Play();
             Instance.BGM.loop = loop;
+            Debug.Log("Play BGM " + clip.name);
         }
     }
     #endregion
