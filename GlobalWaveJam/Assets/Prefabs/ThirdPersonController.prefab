@@ -1338,8 +1338,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851729782310064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.97, y: 9.920881, z: -2.8}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 5.8885036, y: 9.435858, z: -9.876333}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4212191843076612}
   m_Father: {fileID: 0}
@@ -2376,9 +2376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1b0848f75eaba4fae88874e78bb2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Emission: {fileID: 0}
-  Skinned: {fileID: 0}
-  Index: 0
+  Emission: {fileID: 2100000, guid: d1fb58571d543a54a86f006e73564f3d, type: 2}
+  Skinned: {fileID: 2100000, guid: 52bccf60be173244cbea215a40f3ddd8, type: 2}
+  Index: 3
   VFXPrefabs:
   - {fileID: 0}
   Alive: 1
@@ -2428,13 +2428,13 @@ MonoBehaviour:
     m_Bits: 512
   m_MovingTurnSpeedGrounded: 360
   m_StationaryTurnSpeedGrounded: 180
-  m_MoveSpeedMultiplierGrounded: 1
+  m_MoveSpeedMultiplierGrounded: 0.45
   m_GroundCheckDistance: 0.8
   m_MovingTurnSpeedAirborne: 360
   m_StationaryTurnSpeedAirborne: 180
-  m_MoveSpeedMultiplierAirborne: 1
+  m_MoveSpeedMultiplierAirborne: 0.36
   m_GravityMultiplier: 4
-  m_JumpPower: 10
+  m_JumpPower: 15
   m_JetpackPower: 30
 --- !u!114 &114900022025071832
 MonoBehaviour:
@@ -2448,7 +2448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controls:
-    Index: 0
+    Index: 1
     Side: 0
 --- !u!135 &135700785619485856
 SphereCollider:
@@ -2588,7 +2588,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1359703590
+  randomSeed: -1889818094
   InitialModule:
     serializedVersion: 3
     enabled: 1

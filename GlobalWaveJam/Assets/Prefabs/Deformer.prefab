@@ -79,7 +79,7 @@ MonoBehaviour:
       tangentMode: 0
     - serializedVersion: 2
       time: 0.7
-      value: 0
+      value: 0.099999994
       inSlope: -0.021592163
       outSlope: -0.021592163
       tangentMode: 0
@@ -96,8 +96,20 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 1
-      value: -0.023142934
+      time: 0.6349739
+      value: 1.6558961
+      inSlope: 1.0348754
+      outSlope: -39.710896
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.65145665
+      value: 1.0013505
+      inSlope: -39.710896
+      outSlope: -1.4650198
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 1.0008082
+      value: 0.48954353
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -106,10 +118,10 @@ MonoBehaviour:
     m_RotationOrder: 0
   propagationSpeedPerSec: 20
   maxPropagation: 30
-  movementDecay: 12
+  movementDecay: 10
   frequency: 1.2
-  waveHeight: 3.5
-  higherHeightByDist: 1
+  waveHeight: 2
+  higherHeightByDist: 0
 --- !u!135 &135284294613888116
 SphereCollider:
   m_ObjectHideFlags: 1
