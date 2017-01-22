@@ -17,7 +17,22 @@ public static class GameSettings
     public static Dictionary<TrackingEvent, int> ScoreMatrix = new Dictionary<TrackingEvent, int>()
     {
         { TrackingEvent.LastManStanding, 10 },
-        };
+    };
+
+    public static Dictionary<RumbleEvent, RumbleSettings> Rumble = new Dictionary<RumbleEvent, RumbleSettings>()
+    {
+        {  RumbleEvent.Death, new RumbleSettings() { force = .5f, time = 1f } },
+        {  RumbleEvent.ForceHit, new RumbleSettings() { force = .33f, time = .5f } },
+        {  RumbleEvent.Thump, new RumbleSettings() { force = .33f, time = .25f } },
+        {  RumbleEvent.Win, new RumbleSettings() { force = 3f, time = 1f } },
+    };
+
+}
+
+public class RumbleSettings
+{
+    public float time;
+    public float force;
 }
 
 /// <summary>
@@ -32,7 +47,7 @@ public class PlayerStats
     public int Score;
     public Dictionary<TrackingEvent, int> Events = new Dictionary<TrackingEvent, int>()
     {
-//        {  TrackingEvent.LastManStanding, 1},
+        //        {  TrackingEvent.LastManStanding, 1},
     };
 }
 
@@ -93,8 +108,8 @@ public class GameLogic : Singleton<GameLogic>
                         p.Score = newscore;
                         p.Events.Clear();
                     }
-                        // load
-                        SceneManager.LoadScene("Test_CB");
+                    // load
+                    SceneManager.LoadScene("Test_CB");
                     break;
 
                 case GameState.Play:
@@ -124,13 +139,14 @@ public class GameLogic : Singleton<GameLogic>
             return;
 
         stats[0].Events[TrackingEvent.LastManStanding] = 0;
-        
+
         Debug.Log(Players.FindAll(x => x.Chara.Alive).Count + " players remaining...");
         // check other players alive, set outro
         if (Players.FindAll(x => x.Chara.Alive).Count <= GameSettings.MinPlayerToEnd)
         {
             // set tracking event
             Players.FindAll(x => x.Chara.Alive)[0].Events[TrackingEvent.LastManStanding] = 1;
+            Players.FindAll(x => x.Chara.Alive)[0].Chara.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.Win].force, GameSettings.Rumble[RumbleEvent.Win].time);
             // call next state
             State = GameState.Outro;
         }
