@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65580930978559322}
   - component: {fileID: 33340257058470998}
   - component: {fileID: 23387129011780606}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: killFloor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 65653466875733740}
   - component: {fileID: 33310476634224428}
   - component: {fileID: 23317279872732182}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: killFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 65590454133078844}
   - component: {fileID: 33060277983224256}
   - component: {fileID: 23281167043932768}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: killFloor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
