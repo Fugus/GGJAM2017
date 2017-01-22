@@ -11,4 +11,66 @@ MonoBehaviour:
   m_Script: {fileID: 12322, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: AnimationThingy
   m_EditorClassIdentifier: 
-  m_Presets: []
+  m_Presets:
+  - m_Name: 
+    m_Curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0.5
+        inSlope: 0.8333334
+        outSlope: 0.8333334
+        tangentMode: 34
+      - serializedVersion: 2
+        time: 0.59999996
+        value: 1
+        inSlope: 0.8333334
+        outSlope: -517.04083
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 0.60236883
+        value: -0.22480115
+        inSlope: -517.04083
+        outSlope: 0.5089361
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 1.0036722
+        value: -0.020563364
+        inSlope: 0.5089361
+        outSlope: 0.5089361
+        tangentMode: 34
+      m_PreInfinity: 1
+      m_PostInfinity: 1
+      m_RotationOrder: 4
+  - m_Name: 
+    m_Curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0.5
+        inSlope: 0.8333334
+        outSlope: 0.8333334
+        tangentMode: 34
+      - serializedVersion: 2
+        time: 0.59999996
+        value: 1
+        inSlope: 0.8333334
+        outSlope: -517.04083
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 0.60236883
+        value: -0.22480115
+        inSlope: -517.04083
+        outSlope: 0.5089361
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 1.0036722
+        value: -0.020563364
+        inSlope: 0.5089361
+        outSlope: 0.5089361
+        tangentMode: 34
+      m_PreInfinity: 1
+      m_PostInfinity: 1
+      m_RotationOrder: 4

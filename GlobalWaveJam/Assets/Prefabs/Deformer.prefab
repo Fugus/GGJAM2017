@@ -72,14 +72,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.29999998
-      value: 1
+      time: 0.29945683
+      value: 0.98984075
       inSlope: -0.016304694
       outSlope: -0.016304694
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.697611
-      value: 0.4716059
+      time: 0.7
+      value: 0
       inSlope: -0.021592163
       outSlope: -0.021592163
       tangentMode: 0
@@ -90,31 +90,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 34
+      time: 0.0015343954
+      value: 1.0003651
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     - serializedVersion: 2
-      time: 0.5
-      value: 1
-      inSlope: 2
-      outSlope: -2.0113754
-      tangentMode: 69
-    - serializedVersion: 2
-      time: 0.9959841
-      value: 0.0023897605
-      inSlope: -2.0113754
-      outSlope: -2.0113754
-      tangentMode: 34
-    m_PreInfinity: 1
-    m_PostInfinity: 1
+      time: 1
+      value: -0.023142934
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
     m_RotationOrder: 0
-  propagationSpeedPerSec: 15
-  maxPropagation: 8
-  movementDecay: 10
-  frequency: 1
-  waveHeight: 1
+  propagationSpeedPerSec: 20
+  maxPropagation: 30
+  movementDecay: 12
+  frequency: 1.2
+  waveHeight: 3.5
   higherHeightByDist: 1
 --- !u!135 &135284294613888116
 SphereCollider:
