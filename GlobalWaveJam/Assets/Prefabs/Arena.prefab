@@ -77,6 +77,8 @@ GameObject:
   - component: {fileID: 114362817613374138}
   - component: {fileID: 114374365887905650}
   - component: {fileID: 114471597121035732}
+  - component: {fileID: 114239169971212200}
+  - component: {fileID: 114214399384047012}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -263,6 +265,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnPoint: {x: 2.56, y: 12, z: -6.22}
+--- !u!114 &114214399384047012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1955324327283024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2109a7a8532794fa36a0afba1863c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curShader: {fileID: 4800000, guid: 810a6060925d8c5409f6eff257e9a18e, type: 3}
+  ChromaticAbberation: 0
+--- !u!114 &114239169971212200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1955324327283024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ee9cb814faecd48b76d17f0ba5371c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DispersionAmount: -0.05
+  Colors: 0
 --- !u!114 &114362817613374138
 MonoBehaviour:
   m_ObjectHideFlags: 1
