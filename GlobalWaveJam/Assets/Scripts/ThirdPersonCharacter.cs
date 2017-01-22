@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+
+[RequireComponent(typeof(Player))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(DeformSpawner))]
