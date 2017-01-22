@@ -8,6 +8,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(DeformSpawner))]
 [RequireComponent(typeof(ForceFieldSpawner))]
 [RequireComponent(typeof(KeepAboveGround))]
+[RequireComponent(typeof(AudioSource))]
 public class ThirdPersonCharacter : MonoBehaviour
 {
     public Animator m_Animator;
@@ -85,6 +86,11 @@ public class ThirdPersonCharacter : MonoBehaviour
     [SerializeField]
     float m_JetpackPower = 5f;
 
+	AudioSource m_AudioSource;
+	public AudioClip m_AudioJump;
+	public AudioClip m_AudioForceField;
+	public AudioClip m_AudioDeath;
+
     void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -92,6 +98,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         m_DeformSpawner = GetComponent<DeformSpawner>();
         m_KeepAboveGround = GetComponent<KeepAboveGround>();
         m_ForceFieldSpawner = GetComponent<ForceFieldSpawner>();
+		m_AudioSource = GetComponent<AudioSource>();
 
         m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         m_OrigGroundCheckDistance = m_GroundCheckDistance;
@@ -153,6 +160,8 @@ public class ThirdPersonCharacter : MonoBehaviour
                 m_IsGrounded = false;
                 m_GroundCheckDistance = 0.1f;
                 m_HasReleasedJump = false;
+
+				m_AudioSource.PlayOneShot (m_AudioJump, 1);
             }
 
             moveSpeedMultiplier = m_MoveSpeedMultiplierGrounded;
