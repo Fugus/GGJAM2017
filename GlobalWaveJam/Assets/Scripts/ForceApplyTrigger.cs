@@ -15,6 +15,9 @@ public class ForceApplyTrigger : MonoBehaviour
     [SerializeField]
     private Transform OnExitForceTransform;
 
+    [SerializeField]
+    private bool usePosition = false;
+
 #if UNITY_EDITOR
     public bool DoAddChildren = false;
     private void Update()
@@ -52,7 +55,16 @@ public class ForceApplyTrigger : MonoBehaviour
             Rigidbody rigidBody = collider.GetComponent<Rigidbody>();
             if (rigidBody != null)
             {
-                rigidBody.AddForce(ForceStrength * OnEnterForceTransform.forward, ForceMode.Impulse);
+                Vector3 direction = Vector3.zero;
+                if (usePosition)
+                {
+                    direction = (collider.transform.position - OnEnterForceTransform.position).normalized;
+                }
+                else
+                {
+                    direction = OnEnterForceTransform.forward;
+                }
+                rigidBody.AddForce(ForceStrength * direction, ForceMode.Impulse);
             }
         }
     }
@@ -64,7 +76,16 @@ public class ForceApplyTrigger : MonoBehaviour
             Rigidbody rigidBody = collider.GetComponent<Rigidbody>();
             if (rigidBody != null)
             {
-                rigidBody.AddForce(ForceStrength * OnStayForceTransform.forward, ForceMode.Impulse);
+                Vector3 direction = Vector3.zero;
+                if (usePosition)
+                {
+                    direction = (collider.transform.position - OnStayForceTransform.position).normalized;
+                }
+                else
+                {
+                    direction = OnStayForceTransform.forward;
+                }
+                rigidBody.AddForce(ForceStrength * direction, ForceMode.Impulse);
             }
         }
     }
@@ -76,25 +97,37 @@ public class ForceApplyTrigger : MonoBehaviour
             Rigidbody rigidBody = collider.GetComponent<Rigidbody>();
             if (rigidBody != null)
             {
-                rigidBody.AddForce(ForceStrength * OnExitForceTransform.forward, ForceMode.Impulse);
+                Vector3 direction = Vector3.zero;
+                if (usePosition)
+                {
+                    direction = (collider.transform.position - OnExitForceTransform.position).normalized;
+                }
+                else
+                {
+                    direction = OnExitForceTransform.forward;
+                }
+                rigidBody.AddForce(ForceStrength * direction, ForceMode.Impulse);
             }
         }
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        if (OnEnterForceTransform != null)
+        if (!usePosition)
         {
-            DrawArrow.ForGizmo(OnEnterForceTransform.position, OnEnterForceTransform.forward);
-        }
-        if (OnStayForceTransform != null)
-        {
-            DrawArrow.ForGizmo(OnStayForceTransform.position, OnStayForceTransform.forward);
-        }
-        if (OnExitForceTransform != null)
-        {
-            DrawArrow.ForGizmo(OnExitForceTransform.position, OnExitForceTransform.forward);
+            Gizmos.color = Color.yellow;
+            if (OnEnterForceTransform != null)
+            {
+                DrawArrow.ForGizmo(OnEnterForceTransform.position, OnEnterForceTransform.forward);
+            }
+            if (OnStayForceTransform != null)
+            {
+                DrawArrow.ForGizmo(OnStayForceTransform.position, OnStayForceTransform.forward);
+            }
+            if (OnExitForceTransform != null)
+            {
+                DrawArrow.ForGizmo(OnExitForceTransform.position, OnExitForceTransform.forward);
+            }
         }
     }
 }

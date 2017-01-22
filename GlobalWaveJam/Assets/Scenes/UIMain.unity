@@ -244,6 +244,21 @@ Prefab:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 114639679264256162, guid: 257132afb09505746a1aba8f827f6e95,
+        type: 2}
+      propertyPath: Settings.BGMs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: aafb3a3abff5af54db7b3ec4f174f6fe, type: 3}
+    - target: {fileID: 114639679264256162, guid: 257132afb09505746a1aba8f827f6e95,
+        type: 2}
+      propertyPath: Settings.BGMs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
+    - target: {fileID: 114639679264256162, guid: 257132afb09505746a1aba8f827f6e95,
+        type: 2}
+      propertyPath: Settings.BGMs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7db0c87ec4fdb0e48af04349c4f14df9, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 257132afb09505746a1aba8f827f6e95, type: 2}
   m_IsPrefabParent: 0
