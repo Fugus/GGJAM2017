@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+
+[RequireComponent(typeof(Player))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(DeformSpawner))]
@@ -35,6 +37,8 @@ public class ThirdPersonCharacter : MonoBehaviour
                     m_DeformSpawner.SpawnDeform(transform.position);
                     m_IsStomping = false;
                 }
+
+                m_HasReleasedJump = true;
             }
         }
     }
@@ -47,6 +51,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     ForceFieldSpawner m_ForceFieldSpawner;
     KeepAboveGround m_KeepAboveGround;
     bool m_IsStomping = false;
+    bool m_HasReleasedJump = false;
 
     [SerializeField]
     float m_StompPower = 12f;
@@ -77,6 +82,8 @@ public class ThirdPersonCharacter : MonoBehaviour
     [HeaderAttribute("Jump")]
     [SerializeField]
     float m_JumpPower = 12f;
+    [SerializeField]
+    float m_JetpackPower = 5f;
 
     void Awake()
     {
@@ -126,6 +133,11 @@ public class ThirdPersonCharacter : MonoBehaviour
 
         float moveSpeedMultiplier = 1f;
 
+        if (force == ButtonStateEvent.Press)
+        {
+            m_ForceFieldSpawner.SpawnForceField(transform.position);
+        }
+
         // control and velocity handling is different when grounded and airborne:
         if (m_IsGrounded)
         {
@@ -134,17 +146,13 @@ public class ThirdPersonCharacter : MonoBehaviour
             transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 
             // check whether conditions are right to allow a jump:
-            if (jump == ButtonStateEvent.Press && force <= ButtonStateEvent.NONE && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+            if (jump == ButtonStateEvent.Press && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
             {
                 // jump!
                 m_Rigidbody.AddForce(m_GroundNormal * m_JumpPower, ForceMode.Impulse);
                 m_IsGrounded = false;
                 m_GroundCheckDistance = 0.1f;
-            }
-
-            if (force == ButtonStateEvent.Press)
-            {
-                m_ForceFieldSpawner.SpawnForceField(transform.position);
+                m_HasReleasedJump = false;
             }
 
             moveSpeedMultiplier = m_MoveSpeedMultiplierGrounded;
@@ -161,13 +169,31 @@ public class ThirdPersonCharacter : MonoBehaviour
 
             m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
 
-            // stomp!
-            if (jump == ButtonStateEvent.Press && force <= ButtonStateEvent.NONE && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
             {
-                m_Rigidbody.AddRelativeForce(-Vector3.up * m_StompPower, ForceMode.Impulse);
-                m_IsStomping = true;
+                if (!m_HasReleasedJump)
+                {
+                    if (jump == ButtonStateEvent.Hold)
+                    {
+                        Debug.Log("Jetpakcing");
+                        // jetpack!
+                        m_Rigidbody.AddForce(m_GroundNormal * m_JetpackPower, ForceMode.Force);
+                    }
+                    else if (jump == ButtonStateEvent.Release)
+                    {
+                        m_HasReleasedJump = true;
+                    }
+                }
+                else
+                {
+                    // stomp!
+                    if (jump == ButtonStateEvent.Press)
+                    {
+                        m_Rigidbody.AddRelativeForce(-Vector3.up * m_StompPower, ForceMode.Impulse);
+                        m_IsStomping = true;
+                    }
+                }
             }
-            // TODO: keep Hold to jump higher :)
 
             moveSpeedMultiplier = m_MoveSpeedMultiplierAirborne;
         }

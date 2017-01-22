@@ -24,7 +24,14 @@ public enum ButtonStateEvent
     Release,
     NONE = 0,
     Press,
-    Hold,
-    
-    
+    Hold,   
+}
+
+/// <summary>
+/// events tracked for the player
+/// </summary>
+public enum TrackingEvent
+{
+    NONE = -1,
+    LastManStanding,
 }

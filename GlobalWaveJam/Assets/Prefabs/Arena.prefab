@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4225765971418590}
   - component: {fileID: 114086833906065574}
   - component: {fileID: 65580930978559322}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: killFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
