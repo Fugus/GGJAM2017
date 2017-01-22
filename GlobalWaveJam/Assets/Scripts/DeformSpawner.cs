@@ -14,5 +14,7 @@ public class DeformSpawner : MonoBehaviour
         GameObject instantiatedDeformGO = GameObject.Instantiate(deformToSpawnPrefab);
         _instantiatedDeform = instantiatedDeformGO.transform;
         _instantiatedDeform.position = targetPosition;
+
+        GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.Thump].force, GameSettings.Rumble[RumbleEvent.Thump].time);
     }
 }

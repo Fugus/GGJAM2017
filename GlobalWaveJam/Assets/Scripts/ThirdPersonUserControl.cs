@@ -44,6 +44,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Start()
         {
+            // check if this player has a controller
+            GamePadState state = GamePad.GetState(Controls.Index);
+            if (state.IsConnected == false)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+            
             // get the transform of the main camera
             if (Camera.main != null)
             {
