@@ -11,7 +11,10 @@ public class PlayerStats
     // variables
     public int Score;
     public bool Alive = true;
-    public Dictionary<TrackingEvent, int> Events;
+    public Dictionary<TrackingEvent, int> Events = new Dictionary<TrackingEvent, int>()
+    {
+        {  TrackingEvent.LastManStanding, 1},
+    };
 }
 
 
@@ -31,7 +34,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region variables
-    public PlayerStats Stats;
+    public PlayerStats Stats = new PlayerStats();
     #endregion
 
     #region events
@@ -82,7 +85,12 @@ public class Player : MonoBehaviour
     #region tracking
     public void Die()
     {
-        Debug.Log("aaaaargh Rosebud !");
+        // kill and score
+        Stats.Alive = false;
+        
+        
+        Stats.Events[TrackingEvent.LastManStanding] = 0;
+
         if (DeathEvent != null)
             DeathEvent();
     }

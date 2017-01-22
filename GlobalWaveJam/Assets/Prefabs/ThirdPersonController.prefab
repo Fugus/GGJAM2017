@@ -672,7 +672,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4787276816795552}
   - component: {fileID: 54260218578682930}
-  - component: {fileID: 114882113346025728}
   - component: {fileID: 114741948370170374}
   - component: {fileID: 135700785619485856}
   - component: {fileID: 114019057634950710}
@@ -680,6 +679,7 @@ GameObject:
   - component: {fileID: 114719999727088166}
   - component: {fileID: 114290182259808558}
   - component: {fileID: 114133175743674048}
+  - component: {fileID: 114900022025071832}
   m_Layer: 11
   m_Name: ThirdPersonController
   m_TagString: Player
@@ -803,7 +803,6 @@ GameObject:
   - component: {fileID: 4048083862350062}
   - component: {fileID: 33833191779053782}
   - component: {fileID: 23022419230618110}
-  - component: {fileID: 95106656304208192}
   m_Layer: 11
   m_Name: bumper_platform
   m_TagString: Untagged
@@ -2365,6 +2364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceFieldToSpawnPrefab: {fileID: 1320496416955418, guid: 168b787d838d4844baed8c4df4fd6672,
     type: 2}
+  Cooldown: 1
 --- !u!114 &114290182259808558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2432,7 +2432,7 @@ MonoBehaviour:
   m_GravityMultiplier: 4
   m_JumpPower: 10
   m_JetpackPower: 30
---- !u!114 &114882113346025728
+--- !u!114 &114900022025071832
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1851729782310064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
+  m_Script: {fileID: 11500000, guid: 3110fb70a76e5b645a79caff0950308a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Controls:
