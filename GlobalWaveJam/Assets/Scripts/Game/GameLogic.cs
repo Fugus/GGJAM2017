@@ -111,6 +111,9 @@ public class GameLogic : Singleton<GameLogic>
                         p.Score = newscore;
                         p.Events.Clear();
                     }
+                    // clean rumble
+                    RumbleManager.Clear();
+
                     // load
                     SceneManager.LoadScene("Test_CB");
                     break;
