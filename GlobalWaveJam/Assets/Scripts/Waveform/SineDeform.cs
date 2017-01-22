@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SineDeform : MonoBehaviour
 {
+	public Gradient heightVertexColor;
     public AnimationCurve waveHeightFromDistanceToEdge;
-    public AnimationCurve LALA;
+	[UnityEngine.Serialization.FormerlySerializedAsAttribute("LALA")]
+    public AnimationCurve CurveShape;
 
     //Propagation of wave
     public float propagationSpeedPerSec = 2;
@@ -61,7 +63,9 @@ public class SineDeform : MonoBehaviour
 
             Mesh otherMesh = deformableObject.GetComponent<MeshFilter>().mesh;
             Vector3[] vertices = otherMesh.vertices;
-            Vector3[] normals = otherMesh.normals;
+            Color[] vertexColors = otherMesh.colors;
+
+Debug.LogFormat("nb vertices {0}, nbcolors {1}", vertices.Length, vertexColors.Length);
 
             MeshCollider otherMeshCollider = deformableObject.GetComponent<MeshCollider>();
 
@@ -80,14 +84,17 @@ public class SineDeform : MonoBehaviour
                     float currentWaveHeight = waveHeight * waveHeightFromDistanceToEdge.Evaluate(distanceToEdgeRatio);
 
                     float offset = Mathf.PI / 2f;
-                    float sinWave = 2 * LALA.Evaluate(offset + (distance - waveTimer) * frequency / (2f * Mathf.PI)) * currentWaveHeight;
+					float vertexHeightRatio = CurveShape.Evaluate(offset + (distance - waveTimer) * frequency / (2f * Mathf.PI));
+                    float sinWave = 2 * vertexHeightRatio * currentWaveHeight;
 
                     vertices[i] = new Vector3(vertices[i].x, (vertices[i].y + sinWave) / 2, vertices[i].z);
+					vertexColors[i] = heightVertexColor.Evaluate((vertexHeightRatio + 1) / 2);
                 }
                 i++;
             }
 
             otherMesh.vertices = vertices;
+            otherMesh.colors = vertexColors;
             if (otherMeshCollider) otherMeshCollider.sharedMesh = otherMesh;
         }
     }

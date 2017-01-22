@@ -149,6 +149,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2f13e265b1d0c429722640412c79f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heightVertexColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4278190335
+    key1:
+      serializedVersion: 2
+      rgba: 4280002411
+    key2:
+      serializedVersion: 2
+      rgba: 4294901769
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 32479
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 192
+    atime1: 31903
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 3
   waveHeightFromDistanceToEdge:
     serializedVersion: 2
     m_Curve:
@@ -167,7 +211,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  LALA:
+  CurveShape:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
