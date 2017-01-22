@@ -162,10 +162,12 @@ public class GameLogic : Singleton<GameLogic>
         // check other players alive, set outro
         if (Players.FindAll(x => x.Chara.Alive).Count <= GameSettings.MinPlayerToEnd)
         {
+            PlayerStats p = Players.FindAll(x => x.Chara.Alive)[0];
             // set tracking event
-            Players.FindAll(x => x.Chara.Alive)[0].Events[TrackingEvent.LastManStanding] = 1;
-            Players.FindAll(x => x.Chara.Alive)[0].Chara.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.Win].force, GameSettings.Rumble[RumbleEvent.Win].time);
+            p.Events[TrackingEvent.LastManStanding] = 1;
+            p.Chara.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.Win].force, GameSettings.Rumble[RumbleEvent.Win].time);
             // call next state
+            FindObjectOfType<UIGame>().DisplayWin(p.Index, p.Chara.Emission.GetColor("_EmissionColor"));
             State = GameState.Outro;
         }
     }

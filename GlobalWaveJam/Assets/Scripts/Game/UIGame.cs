@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIGame : MonoBehaviour
 {
@@ -49,4 +50,10 @@ public class UIGame : MonoBehaviour
         }
     }
     #endregion
+
+    public void DisplayWin(int index, Color color)
+    {
+        GameObject.Find("Title").GetComponent<Text>().text = "P" + (index +1) + " wins !";      // OFFSET PLAYER COUNT
+        GameObject.Find("Title").GetComponent<Text>().color = color;
+    }
 }
