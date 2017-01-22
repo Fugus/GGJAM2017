@@ -5,6 +5,7 @@ using UnityEngine;
 public class SineDeform : MonoBehaviour
 {
     public AnimationCurve waveHeightFromDistanceToEdge;
+    public AnimationCurve LALA;
 
     //Propagation of wave
     public float propagationSpeedPerSec = 2;
@@ -69,17 +70,17 @@ public class SineDeform : MonoBehaviour
             {
                 Vector3 verticeWorldSpacePos = deformableObject.transform.TransformPoint(vertices[i]);
                 float distance = Vector3.Distance(verticeWorldSpacePos, transform.position);
-                //Debug.Log (distance);
+
                 if (distance <= sphereCollider.radius)
                 {
                     float waveRatio = (Mathf.Clamp(-distance + maxPropagation, 0, maxPropagation)) / maxPropagation;
-                    //float distanceHeightRatio = distance * waveHeight / maxPropagation;
 
                     float distanceToEdgeRatio = (sphereCollider.radius - distance) / sphereCollider.radius;
 
-                    float currentWaveHeight = waveHeight * waveHeightFromDistanceToEdge.Evaluate(distanceToEdgeRatio);//distance * waveHeight / maxPropagation;
+                    float currentWaveHeight = waveHeight * waveHeightFromDistanceToEdge.Evaluate(distanceToEdgeRatio);
 
-                    float sinWave = (Mathf.Sin(Mathf.PI / 2f + (distance - (waveTimer)) * (frequency)) * (currentWaveHeight)) * 2;
+                    float offset = Mathf.PI / 2f;
+                    float sinWave = 2 * LALA.Evaluate(offset + (distance - waveTimer) * frequency / (2f * Mathf.PI)) * currentWaveHeight;
 
                     vertices[i] = new Vector3(vertices[i].x, (vertices[i].y + sinWave) / 2, vertices[i].z);
                 }
