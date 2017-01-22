@@ -10,7 +10,7 @@ public class killFloor : MonoBehaviour {
 
         Player p = col.GetComponent<Player>();
         if (p != null)
-            p.Die();
+            p.Die(gameObject);
             
 
 		//if (col.tag == "Player") {

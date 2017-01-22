@@ -39,6 +39,17 @@ public class RumbleManager : Singleton<RumbleManager>
         }
     }
 
+    // clean when starting the game
+    public static void Clear()
+    {
+        foreach (Rumble r in Instance.Rumbles)
+        {
+            Rumble(r.Pad, r.Time, 0);
+        }
+
+        Instance.Rumbles.Clear();
+    }
+
     public static void Rumble(ControllerSettings controls, float time, float force)
     {
         List<Rumble> rumble = Instance.Rumbles.FindAll(x => x.Pad == controls);
@@ -64,7 +75,7 @@ public class RumbleManager : Singleton<RumbleManager>
 
         // set
         GamePad.SetVibration(controls.Index, left.Force, right.Force);
-        Debug.Log("rumble " + controls.Index + ": " + left.Force + " " + right.Force);
+        //Debug.Log("rumble " + controls.Index + ": " + left.Force + " " + right.Force);
     }
 
 }

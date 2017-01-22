@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIMain : MonoBehaviour {
+[System.Serializable]
+public class CosmeticSettings
+{
+    public List<AudioClip> BGMs = new List<AudioClip>();
+}
+
+    public class UIMain : MonoBehaviour {
+
+    public CosmeticSettings Settings = new CosmeticSettings();
 
     // Use this for initialization
     void Start () {
         // define delegates
         GameLogic.Instance.StateEvent += OnGameState;
+
+        GameLogic.State = GameState.Menu;
+
     }
 
     // Update is called once per frame
@@ -47,6 +58,12 @@ public class UIMain : MonoBehaviour {
 
             default:
                 break;
+        }
+
+        // Play BGM
+        if (state != GameState.NONE && Settings.BGMs.Count > (int)state )
+        {
+            GameLogic.PlayBGM(Settings.BGMs[(int)state]);
         }
     }
     #endregion

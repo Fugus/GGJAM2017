@@ -15,7 +15,7 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     Rigidbody m_Rigidbody;
     private bool m_IsGroundedActual;
-    bool m_IsGrounded
+    public bool m_IsGrounded
     {
         get
         {
