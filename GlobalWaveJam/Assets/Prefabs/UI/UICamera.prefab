@@ -23,8 +23,11 @@ GameObject:
   - component: {fileID: 92029991512752488}
   - component: {fileID: 124402512190658478}
   - component: {fileID: 81281737144141956}
+  - component: {fileID: 114143362209528982}
   - component: {fileID: 114153216631880334}
   - component: {fileID: 114670938388781420}
+  - component: {fileID: 114925843638768766}
+  - component: {fileID: 114864971409953174}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: MainCamera
@@ -93,6 +96,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389160638963960}
   m_Enabled: 1
+--- !u!114 &114143362209528982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389160638963960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a47a3cb01188543b8e194d654ad3eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 82cd0b903d42a3940bf7064a0f5dbe6d, type: 3}
+  verts_force: 0.25
+  verts_force_2: 0.25
+  scanColor: 0.25
+  contrast: -2
+  brightness: 0
 --- !u!114 &114153216631880334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,16 +155,16 @@ MonoBehaviour:
   hdr: 2
   sepBlurSpread: 0.1
   quality: 1
-  bloomIntensity: 1.5
-  bloomThreshold: 0.3
+  bloomIntensity: 1
+  bloomThreshold: 0.5
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 1
-  hollywoodFlareBlurIterations: 2
+  hollywoodFlareBlurIterations: 1
   flareRotation: 0
-  lensflareMode: 0
-  hollyStretchWidth: 2.5
-  lensflareIntensity: 0
-  lensflareThreshold: 0.3
+  lensflareMode: 1
+  hollyStretchWidth: 1
+  lensflareIntensity: 0.3
+  lensflareThreshold: 0.1
   lensFlareSaturation: 0.75
   flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
   flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
@@ -157,6 +177,32 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
+--- !u!114 &114864971409953174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389160638963960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2109a7a8532794fa36a0afba1863c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curShader: {fileID: 4800000, guid: 810a6060925d8c5409f6eff257e9a18e, type: 3}
+  ChromaticAbberation: 0
+--- !u!114 &114925843638768766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389160638963960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ee9cb814faecd48b76d17f0ba5371c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DispersionAmount: -0.05
+  Colors: 0
 --- !u!124 &124402512190658478
 Behaviour:
   m_ObjectHideFlags: 1
