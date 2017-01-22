@@ -152,13 +152,13 @@ MonoBehaviour:
   heightVertexColor:
     key0:
       serializedVersion: 2
-      rgba: 4278190335
+      rgba: 4294312189
     key1:
       serializedVersion: 2
-      rgba: 4280002411
+      rgba: 4290901060
     key2:
       serializedVersion: 2
-      rgba: 4294901769
+      rgba: 4290068736
     key3:
       serializedVersion: 2
       rgba: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     ctime0: 0
-    ctime1: 32479
+    ctime1: 31418
     ctime2: 65535
     ctime3: 0
     ctime4: 0

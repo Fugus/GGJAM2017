@@ -1338,7 +1338,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851729782310064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8885036, y: 9.435858, z: -9.876333}
+  m_LocalPosition: {x: 0.19, y: 10.21, z: -0.41}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4212191843076612}
@@ -2298,7 +2298,7 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.4
+  m_Intensity: 3.02
   m_Range: 8.1959305
   m_SpotAngle: 38
   m_CookieSize: 10
@@ -2436,6 +2436,9 @@ MonoBehaviour:
   m_GravityMultiplier: 4
   m_JumpPower: 15
   m_JetpackPower: 30
+  m_AudioJump: {fileID: 0}
+  m_AudioForceField: {fileID: 0}
+  m_AudioDeath: {fileID: 0}
 --- !u!114 &114900022025071832
 MonoBehaviour:
   m_ObjectHideFlags: 1
