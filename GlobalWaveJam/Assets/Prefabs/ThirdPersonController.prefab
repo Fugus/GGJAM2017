@@ -2436,9 +2436,9 @@ MonoBehaviour:
   m_GravityMultiplier: 4
   m_JumpPower: 15
   m_JetpackPower: 30
-  m_AudioJump: {fileID: 0}
-  m_AudioForceField: {fileID: 0}
-  m_AudioDeath: {fileID: 0}
+  m_AudioJump: {fileID: 8300000, guid: a7e17cc497ce62a42b90314aa0717437, type: 3}
+  m_AudioForceField: {fileID: 8300000, guid: 4ace1d801306f434389c344cff1fe881, type: 3}
+  m_AudioDeath: {fileID: 8300000, guid: c54609bff9022494e8fbab2789ec61b2, type: 3}
 --- !u!114 &114900022025071832
 MonoBehaviour:
   m_ObjectHideFlags: 1
