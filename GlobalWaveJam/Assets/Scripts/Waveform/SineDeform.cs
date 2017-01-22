@@ -65,8 +65,6 @@ public class SineDeform : MonoBehaviour
             Vector3[] vertices = otherMesh.vertices;
             Color[] vertexColors = otherMesh.colors;
 
-Debug.LogFormat("nb vertices {0}, nbcolors {1}", vertices.Length, vertexColors.Length);
-
             MeshCollider otherMeshCollider = deformableObject.GetComponent<MeshCollider>();
 
             int i = 0;
