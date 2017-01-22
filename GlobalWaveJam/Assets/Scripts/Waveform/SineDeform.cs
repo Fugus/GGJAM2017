@@ -9,15 +9,13 @@ public class SineDeform : MonoBehaviour {
 	public float maxPropagation = 10;
 
 	//Wave Movement duration AFTER maxPropagation is achieved
-	public float decay = 1;
+	public float movementDecay = 1;
 
 	//Amount of waves
 	public float frequency = 1;
-	//public float frequencyDecay = 0.1f;
-	private float currentFrequency;
 
 	//Height of waves
-	public float startHeight = 1;
+	public float waveHeight = 1;
 
 	//WaveTimer
 	private float waveTimer = 1;
@@ -26,16 +24,11 @@ public class SineDeform : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		currentFrequency = frequency;
-
 		sphereCollider = GetComponent<SphereCollider> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		/*Vector3 newPosition = new Vector3 (0, 0, 0);
-		transform.position = new Vector3 (transform.position.x, Mathf.Sin(1*Time.time)*startHeight, transform.position.z);
-		currentFrequency += frequencyDecay * Time.deltaTime;*/
 
 		waveTimer += Time.deltaTime*propagationSpeedPerSec;
 		//Debug.Log (Time.time);
@@ -48,7 +41,7 @@ public class SineDeform : MonoBehaviour {
 
 		if (sphereCollider.radius /*==*/ > maxPropagation) {
 			//Start wave movement decay
-			propagationSpeedPerSec -= Time.deltaTime*decay;
+			propagationSpeedPerSec -= Time.deltaTime*movementDecay;
 			if (propagationSpeedPerSec < 0)
 				propagationSpeedPerSec = 0;
 			
@@ -57,6 +50,7 @@ public class SineDeform : MonoBehaviour {
 		}
 
 		foreach (var deformableObject in deformableList) {
+			
 			Mesh otherMesh = deformableObject.GetComponent<MeshFilter> ().mesh;
 			Vector3[] vertices = otherMesh.vertices;
 			Vector3[] normals = otherMesh.normals;
@@ -69,11 +63,12 @@ public class SineDeform : MonoBehaviour {
 				float distance = Vector3.Distance (verticeWorldSpacePos, transform.position);
 				//Debug.Log (distance);
 				if (distance<=sphereCollider.radius) {
-					float distanceHeightRatio = startHeight - distance/maxPropagation;
-					if (distanceHeightRatio < 0)
-						distanceHeightRatio = 0;
-					
-					vertices[i] = new Vector3 (vertices[i].x, Mathf.Sin((distance-(waveTimer))*(frequency))*(/*startHeight*2/waveTimer*/distanceHeightRatio), vertices[i].z);
+					float waveRatio = (Mathf.Clamp (-distance + maxPropagation, 0, maxPropagation)) / maxPropagation;
+					//float distanceHeightRatio = distance * startHeight / maxPropagation;
+
+					float sinWave = (Mathf.Sin ((distance - (waveTimer)) * (frequency)) * (waveHeight * waveRatio))*2;
+
+					vertices[i] = new Vector3 (vertices[i].x, (vertices[i].y + sinWave)/2, vertices[i].z);
 				}
 				i++;
 			}
