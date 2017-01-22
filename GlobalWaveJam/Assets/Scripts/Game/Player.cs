@@ -17,9 +17,11 @@ public class Player : MonoBehaviour
     #region settings
     public Material Emission;
     public Material Skinned;
+    public int Index;
     #endregion
 
     #region variables
+    [HideInInspector]
     public bool Alive = true;
     #endregion
 
@@ -57,8 +59,12 @@ public class Player : MonoBehaviour
                 r.material = Skinned;
         }
 
-        // register to game logic (for faster reference)
-        GameLogic.Players.Add(new PlayerStats() { Chara = this });
+        // register to game logic (for faster reference), only first time (then just update chara reference next time) 
+        if (GameLogic.Players.FindAll(x => x.Index == Index).Count == 0)
+            GameLogic.Players.Add(new PlayerStats() { Chara = this, Index = this.Index });
+        else
+            GameLogic.Players.Find(x => x.Index == Index).Chara = this;
+
         DeathEvent += GameLogic.Instance.OnDeath;
     }
 

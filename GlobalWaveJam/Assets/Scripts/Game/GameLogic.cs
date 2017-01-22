@@ -28,6 +28,7 @@ public class PlayerStats
     // references
     public Player Chara;
     // variables
+    public int Index;
     public int Score;
     public Dictionary<TrackingEvent, int> Events = new Dictionary<TrackingEvent, int>()
     {
@@ -82,11 +83,18 @@ public class GameLogic : Singleton<GameLogic>
                     break;
 
                 case GameState.Intro:
-                    // remove players
-                    Players.Clear();
+                    // compute scores and reset tracking
+                    foreach (PlayerStats p in GameLogic.Players)
+                    {
+                        int newscore = p.Score;
+                        foreach (KeyValuePair<TrackingEvent, int> pair in p.Events)
+                            newscore += GameSettings.ScoreMatrix[pair.Key] * pair.Value;
 
-                    // load
-                    SceneManager.LoadScene("Test_CB");
+                        p.Score += newscore;
+                        p.Events.Clear();
+                    }
+                        // load
+                        SceneManager.LoadScene("Test_CB");
                     break;
 
                 case GameState.Play:
