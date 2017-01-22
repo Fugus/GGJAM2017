@@ -4,14 +4,15 @@ using UnityEngine;
 using XInputDotNetPure;
 
 
+[System.Serializable]
+public class ControllerSettings
+{
+    public PlayerIndex Index = PlayerIndex.One;
+    public ControllerSide Side = ControllerSide.Left;
+}
+
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-    [System.Serializable]
-    public class ControllerSettings
-    {
-        public PlayerIndex Index = PlayerIndex.One;
-        public ControllerSide Side = ControllerSide.Left;
-    }
 
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
@@ -57,6 +58,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+
+            // reset rumble
+            Rumble(0, 0);
         }
 
 
@@ -101,6 +105,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // pass all parameters to the character control script
             m_Character.Move(m_Move, m_Force, m_Jump);
         }
+
+        #region vibration
+        public void Rumble(float force, float time)
+        {
+            RumbleManager.Rumble(Controls, time, force);
+        }
+        #endregion
 
     }
 }

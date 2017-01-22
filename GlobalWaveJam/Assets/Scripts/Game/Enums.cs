@@ -35,3 +35,11 @@ public enum TrackingEvent
     NONE = -1,
     LastManStanding,
 }
+
+public enum RumbleEvent
+{
+    Death,
+    ForceHit,
+    Win, 
+    Thump,
+}

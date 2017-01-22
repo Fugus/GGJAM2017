@@ -111,10 +111,14 @@ public class Player : MonoBehaviour
         GetComponent<ThirdPersonUserControl>().enabled = false;
 
         // display death VFX (TODO: input the vfx string name)
-        SSpawner.Spawn("VFXDeath", transform.position, Quaternion.identity);
+        SSpawner.Spawn("death_fx", transform.position, Quaternion.identity);
 
         // display cam shake
         Camera.main.GetComponent<Animation>().Play();
+
+        // controller
+        GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.Death].force, GameSettings.Rumble[RumbleEvent.Death].time);
+
 
         if (DeathEvent != null)
             DeathEvent(this);
