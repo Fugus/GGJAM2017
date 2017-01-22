@@ -438,6 +438,7 @@ MonoBehaviour:
   movementDecay: 5
   frequency: 1
   waveHeight: 1
+  higherHeightByDist: 0
 --- !u!135 &1905512287
 SphereCollider:
   m_ObjectHideFlags: 0

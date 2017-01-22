@@ -16,6 +16,7 @@ public class SineDeform : MonoBehaviour {
 
 	//Height of waves
 	public float waveHeight = 1;
+	public bool higherHeightByDist = false;
 
 	//WaveTimer
 	private float waveTimer = 1;
@@ -64,9 +65,11 @@ public class SineDeform : MonoBehaviour {
 				//Debug.Log (distance);
 				if (distance<=sphereCollider.radius) {
 					float waveRatio = (Mathf.Clamp (-distance + maxPropagation, 0, maxPropagation)) / maxPropagation;
-					//float distanceHeightRatio = distance * startHeight / maxPropagation;
+					//float distanceHeightRatio = distance * waveHeight / maxPropagation;
 
-					float sinWave = (Mathf.Sin ((distance - (waveTimer)) * (frequency)) * (waveHeight * waveRatio))*2;
+					float currentWaveHeight = (higherHeightByDist)? (distance * waveHeight / maxPropagation) : (waveHeight * waveRatio);
+
+					float sinWave = (Mathf.Sin ((distance - (waveTimer)) * (frequency)) * (currentWaveHeight))*2;
 
 					vertices[i] = new Vector3 (vertices[i].x, (vertices[i].y + sinWave)/2, vertices[i].z);
 				}
