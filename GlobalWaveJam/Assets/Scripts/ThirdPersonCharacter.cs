@@ -175,7 +175,6 @@ public class ThirdPersonCharacter : MonoBehaviour
                 {
                     if (jump == ButtonStateEvent.Hold)
                     {
-                        Debug.Log("Jetpakcing");
                         // jetpack!
                         m_Rigidbody.AddForce(m_GroundNormal * m_JetpackPower, ForceMode.Force);
                     }
