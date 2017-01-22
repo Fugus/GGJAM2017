@@ -64,7 +64,7 @@ public class RumbleManager : Singleton<RumbleManager>
 
         // set
         GamePad.SetVibration(controls.Index, left.Force, right.Force);
-        Debug.Log("rumble " + controls.Index + ": " + left.Force + " " + right.Force);
+        //Debug.Log("rumble " + controls.Index + ": " + left.Force + " " + right.Force);
     }
 
 }

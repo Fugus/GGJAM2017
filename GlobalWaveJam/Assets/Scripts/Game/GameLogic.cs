@@ -70,6 +70,9 @@ public class GameLogic : Singleton<GameLogic>
     }
     #endregion
 
+    private AudioSource BGM;
+
+
     #region game state
     private GameState _state = GameState.NONE;
 
@@ -164,4 +167,32 @@ public class GameLogic : Singleton<GameLogic>
     {
 
     }
+
+
+    #region bgm
+    public static void PlayBGM(AudioClip clip, bool loop = true)
+    {
+        // 1st call in main menu: instatiate
+        if (Instance.BGM == null)
+        {
+            Instance.BGM = Instance.gameObject.AddComponent<AudioSource>();
+        }
+
+        Instance.BGM.volume = .5f;
+
+        if (clip == null)
+        {
+            Debug.LogWarning("No BGM to play !");
+            return;
+        }
+
+        if (clip != Instance.BGM.clip)
+        {
+            Instance.BGM.Stop();
+            Instance.BGM.clip = clip;
+            Instance.BGM.Play();
+            Instance.BGM.loop = loop;
+        }
+    }
+    #endregion
 }
