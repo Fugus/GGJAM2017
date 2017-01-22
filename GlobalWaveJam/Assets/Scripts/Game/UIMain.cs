@@ -17,6 +17,10 @@ public class CosmeticSettings
         // define delegates
         GameLogic.Instance.StateEvent += OnGameState;
 
+        // duplicate settings to game logic (HACK)
+        if (Settings.BGMs.Count > 0)
+            GameLogic.Instance.PermanentSettings = Settings;
+
         GameLogic.State = GameState.Menu;
 
     }
@@ -58,12 +62,6 @@ public class CosmeticSettings
 
             default:
                 break;
-        }
-
-        // Play BGM
-        if (state != GameState.NONE && Settings.BGMs.Count > (int)state )
-        {
-            GameLogic.PlayBGM(Settings.BGMs[(int)state]);
         }
     }
     #endregion
