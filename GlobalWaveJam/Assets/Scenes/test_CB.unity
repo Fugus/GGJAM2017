@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022842664, g: 0.011234282, b: 0.040441006, a: 1}
+  m_IndirectSpecularColor: {r: 0.022732085, g: 0.011198717, b: 0.040317193, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -206,6 +206,12 @@ Prefab:
       propertyPath: Index
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -314,6 +320,12 @@ Prefab:
       propertyPath: Index
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -385,6 +397,12 @@ Prefab:
       propertyPath: Index
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -456,6 +474,12 @@ Prefab:
       propertyPath: Index
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -560,14 +584,6 @@ Prefab:
     - target: {fileID: 4993100364454924, guid: ccfa5892f6328f843b69273d80385870, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606248620155522, guid: ccfa5892f6328f843b69273d80385870, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606248620155522, guid: ccfa5892f6328f843b69273d80385870, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -23.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccfa5892f6328f843b69273d80385870, type: 2}
@@ -705,6 +721,12 @@ Prefab:
       propertyPath: Index
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -771,6 +793,12 @@ Prefab:
       propertyPath: Index
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -879,6 +907,12 @@ Prefab:
       propertyPath: Controls.Index
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0
@@ -930,6 +964,12 @@ Prefab:
       propertyPath: Index
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114290182259808558, guid: 0912dec8d26e0914b875623b8eac8316,
+        type: 2}
+      propertyPath: VFXPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0912dec8d26e0914b875623b8eac8316, type: 2}
   m_IsPrefabParent: 0

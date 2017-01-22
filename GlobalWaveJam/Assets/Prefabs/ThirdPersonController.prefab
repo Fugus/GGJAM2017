@@ -2380,7 +2380,7 @@ MonoBehaviour:
   Skinned: {fileID: 2100000, guid: 52bccf60be173244cbea215a40f3ddd8, type: 2}
   Index: 3
   VFXPrefabs:
-  - {fileID: 0}
+  - {fileID: 1648756499353234, guid: 768ce0bc81688d844b621ea6ed9caaf3, type: 2}
   Alive: 1
 --- !u!114 &114574187364561914
 MonoBehaviour:

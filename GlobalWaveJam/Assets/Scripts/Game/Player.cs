@@ -104,14 +104,15 @@ public class Player : MonoBehaviour
     }
 
     #region tracking
-    public void Die()
+    public void Die(GameObject deathfloor = null)
     {
         // kill and score
         Alive = false;
-        GetComponent<ThirdPersonUserControl>().enabled = false;
+        //GetComponent<ThirdPersonUserControl>().enabled = false;
+        gameObject.SetActive(false);
 
         // display death VFX (TODO: input the vfx string name)
-        SSpawner.Spawn("death_fx", transform.position, Quaternion.identity);
+        SSpawner.Spawn("death_fx", transform.position, deathfloor != null ? deathfloor.transform.rotation : Quaternion.identity);
 
         // display cam shake
         Camera.main.GetComponent<Animation>().Play();
