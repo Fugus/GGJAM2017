@@ -32,7 +32,7 @@ public class PlayerStats
     public int Score;
     public Dictionary<TrackingEvent, int> Events = new Dictionary<TrackingEvent, int>()
     {
-        {  TrackingEvent.LastManStanding, 1},
+//        {  TrackingEvent.LastManStanding, 1},
     };
 }
 
@@ -90,7 +90,7 @@ public class GameLogic : Singleton<GameLogic>
                         foreach (KeyValuePair<TrackingEvent, int> pair in p.Events)
                             newscore += GameSettings.ScoreMatrix[pair.Key] * pair.Value;
 
-                        p.Score += newscore;
+                        p.Score = newscore;
                         p.Events.Clear();
                     }
                         // load
@@ -103,7 +103,7 @@ public class GameLogic : Singleton<GameLogic>
                 case GameState.Outro:
                     Debug.Log("End game !");
                     // load
-                    SceneManager.LoadScene("UIResults", LoadSceneMode.Additive);
+                    SceneManager.LoadScene("UIResults"); //, LoadSceneMode.Additive);
                     break;
 
                 default:
@@ -129,6 +129,9 @@ public class GameLogic : Singleton<GameLogic>
         // check other players alive, set outro
         if (Players.FindAll(x => x.Chara.Alive).Count <= GameSettings.MinPlayerToEnd)
         {
+            // set tracking event
+            Players.FindAll(x => x.Chara.Alive)[0].Events[TrackingEvent.LastManStanding] = 1;
+            // call next state
             State = GameState.Outro;
         }
     }

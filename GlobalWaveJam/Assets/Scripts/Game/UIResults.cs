@@ -11,10 +11,11 @@ public class UIResults : MonoBehaviour
     {
         foreach (PlayerStats p in GameLogic.Players)
         {
-            string dbgtxt = "Chara " + p.Index;
+            string dbgtxt = "Chara " + p.Index + "(original score: " + p.Score + ")";
             int newscore = p.Score;
             foreach (KeyValuePair<TrackingEvent, int> pair in p.Events)
             {
+                dbgtxt += "\n" + pair.Key.ToString() + ": " + pair.Value;
                 newscore += GameSettings.ScoreMatrix[pair.Key] * pair.Value;
             }
 
@@ -23,7 +24,7 @@ public class UIResults : MonoBehaviour
                 if (t.name == "Results_" + p.Index)
                 {
                     t.text = "" + newscore;
-                    Debug.Log(t.name + " " + t.text);
+                    Debug.Log(dbgtxt + "\n" + t.name + " " + t.text);
                 }
             }
         }

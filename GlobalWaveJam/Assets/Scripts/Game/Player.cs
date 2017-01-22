@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public Material Emission;
     public Material Skinned;
     public int Index;
+    public List<GameObject> VFXPrefabs;
     #endregion
 
     #region variables
@@ -32,6 +33,13 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // GENERATE OBJECTS
+        foreach (GameObject o in VFXPrefabs)
+        {
+            SSpawner.AddElements(o, 1);
+        }
+
+        // COLORS !
         foreach (TrailRenderer r in GetComponentsInChildren<TrailRenderer>())
         {
             // change emissive in trails
@@ -50,6 +58,23 @@ public class Player : MonoBehaviour
                 temp[1] = Skinned;
             r.materials = temp;
             //Debug.Log(r.gameObject.name + ":" + r.materials.Length);
+        }
+
+        // lights and stuff
+        if (Emission != null)
+        {
+            Color c = Emission.GetColor("_EmissionColor");
+            foreach (Light l in GetComponentsInChildren<Light>())
+            {
+                l.color = c;
+            }
+
+            foreach (ParticleSystem p in GetComponentsInChildren<ParticleSystem>())
+            {
+                ParticleSystem.MainModule module = p.main;
+                module.startColor = c;
+            }
+
         }
 
         // change characters skinned material (skin anim models such as robot)
@@ -74,12 +99,22 @@ public class Player : MonoBehaviour
 
     }
 
+    void OnDestroy()
+    {
+    }
+
     #region tracking
     public void Die()
     {
         // kill and score
         Alive = false;
         GetComponent<ThirdPersonUserControl>().enabled = false;
+
+        // display death VFX (TODO: input the vfx string name)
+        SSpawner.Spawn("VFXDeath", transform.position, Quaternion.identity);
+
+        // display cam shake
+        Camera.main.GetComponent<Animation>().Play();
 
         if (DeathEvent != null)
             DeathEvent(this);

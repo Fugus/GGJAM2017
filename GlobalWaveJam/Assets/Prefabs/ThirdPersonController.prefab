@@ -2378,6 +2378,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Emission: {fileID: 0}
   Skinned: {fileID: 0}
+  Index: 0
+  VFXPrefabs:
+  - {fileID: 0}
+  Alive: 1
 --- !u!114 &114574187364561914
 MonoBehaviour:
   m_ObjectHideFlags: 1
