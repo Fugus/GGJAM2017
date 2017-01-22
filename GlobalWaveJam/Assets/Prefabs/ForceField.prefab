@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39943a92b0369245b7c6e1f17355a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceStrength: 5
+  forceStrength: 9
   duration: 1
   maxSphereRadius: 5
   sphereScaleAnimationCurve:
