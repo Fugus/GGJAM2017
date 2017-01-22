@@ -9,6 +9,9 @@ public class ForceField : MonoBehaviour
     private float forceStrength = 5f;
 
     [SerializeField]
+    private bool applyOnlyOnGroundedCharacters = false;
+
+    [SerializeField]
     private float duration = 1f;
 
 
@@ -48,10 +51,14 @@ public class ForceField : MonoBehaviour
         if (!transformsToIgnore.Contains(collider.transform))
         {
             transformsToIgnore.Add(collider.transform);
-            Vector3 toCollider = collider.transform.position - transform.position;
-            toCollider.Normalize();
-            collider.GetComponent<Rigidbody>().AddForce(forceStrength * toCollider, ForceMode.Impulse);
-            collider.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.ForceHit].force, GameSettings.Rumble[RumbleEvent.ForceHit].time);
+            if (!applyOnlyOnGroundedCharacters ||
+            collider.GetComponent<ThirdPersonCharacter>().m_IsGrounded)
+            {
+                Vector3 toCollider = collider.transform.position - transform.position;
+                toCollider.Normalize();
+                collider.GetComponent<Rigidbody>().AddForce(forceStrength * toCollider, ForceMode.Impulse);
+                collider.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().Rumble(GameSettings.Rumble[RumbleEvent.ForceHit].force, GameSettings.Rumble[RumbleEvent.ForceHit].time);
+            }
         }
     }
 }
