@@ -88,8 +88,8 @@ public class ThirdPersonCharacter : MonoBehaviour
 
 	AudioSource m_AudioSource;
 	public AudioClip m_AudioJump;
-	public AudioClip m_AudioStomp;
 	public AudioClip m_AudioForceField;
+	public AudioClip m_AudioDeath;
 
     void Awake()
     {
@@ -199,8 +199,6 @@ public class ThirdPersonCharacter : MonoBehaviour
                     {
                         m_Rigidbody.AddRelativeForce(-Vector3.up * m_StompPower, ForceMode.Impulse);
                         m_IsStomping = true;
-
-						m_AudioSource.PlayOneShot (m_AudioStomp, 1);
                     }
                 }
             }
